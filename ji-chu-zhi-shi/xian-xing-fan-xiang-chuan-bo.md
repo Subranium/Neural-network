@@ -90,6 +90,34 @@ $$z=x \cdot y=16.6667 \times 9=150.0003$$
 
 我们一下子就成功地让z值变成了150.0003，与150的目标非常地接近，这就是偏导数的威力所在。
 
+```python
+def back_propagation_for_w(w, b, t):
+    '''
+    反向传播求解w
+    :param w: 权重w
+    :param b: 权重b
+    :param t: 目标值t
+    :return:
+    '''
+    print("\nback_propagation_for_w ----- \n")
+    error = 1e-5
+    count = 1
+    while(True):
+        x, y ,z = target_function(w, b)
+        delta_z = z - t
+        print("w=%f,b=%f,z=%f,delta_z=%f" % (w, b, z, delta_z))
+        if abs(delta_z) < error:
+            break
+        # 偏z偏x=y
+        # 偏x偏w=2
+        partial_w = y * 2
+        delta_w = delta_z / partial_w
+        w = w - delta_w
+        count = count + 1
+    print("done!\ntotal iteration times = %d" % count)
+    print("final w = %f" % w)
+```
+
 ## 反向传播求解b
 
 ### 求b的偏导
@@ -153,6 +181,36 @@ $$z=x \cdot y=17.4285 \times 8.619=150.2162$$
 
 这个问题用数学公式倒推求解一个二次方程，就能直接得到准确的b值吗？是的！但是我们是要说明机器学习的方法，机器并不会解二次方程，而且很多时候不是用二次方程就能解决实际问题的。而上例所示，是用机器所擅长的迭代计算的方法来不断逼近真实解，这就是机器学习的真谛！而且这种方法是普遍适用的。
 
+```python
+def back_propagation_for_b(w, b, t):
+    '''
+    反向传播求解b
+    :param w: 权重w
+    :param b: 权重b
+    :param t: 目标值t
+    :return:
+    '''
+    print("\nback_propagation_for_b ----- \n")
+    error = 1e-5
+    count = 1
+    while(True):
+        x, y ,z = target_function(w, b)
+        delta_z = z - t
+        print("w=%f,b=%f,z=%f,delta_z=%f" % (w, b, z, delta_z))
+        if abs(delta_z) < error:
+            break
+        # 偏z偏x=y
+        # 偏x偏b=3
+        # 偏z偏y=x
+        # 偏y偏b=2
+        partial_b = 2 * x + 3 * y
+        delta_b = delta_z / partial_b
+        b = b - delta_b
+        count = count + 1
+    print("done!\ntotal iteration times = %d" % count)
+    print("final b = %f" % b)
+```
+
 ## 同时求解w和b的变化值
 
 这次我们要同时改变w和b，到达最终结果为z=150的目的。
@@ -169,6 +227,42 @@ $$\Delta w=\frac{\Delta z / 2}{18} = \frac{12/2}{18}=0.333$$
 * $$y=2b+1=2 \times 3.905+1=8.81$$
 * $$z=x \times y=17.049 \times 8.81=150.2$$
 
+```python
+def back_propagation_for_wb(w, b, t):
+    '''
+    反向传播求解wb
+    :param w: 权重w
+    :param b: 权重b
+    :param t: 目标值t
+    :return:
+    '''
+    print("\nback_propagation_for_wb ----- \n")
+    error = 1e-5
+    count = 1
+    while(True):
+        x, y ,z = target_function(w, b)
+        delta_z = z - t
+        print("w=%f,b=%f,z=%f,delta_z=%f" % (w, b, z, delta_z))
+        if abs(delta_z) < error:
+            break
+        # 偏z偏x=y
+        # 偏x偏b=3
+        # 偏z偏y=x
+        # 偏y偏b=2
+        # 偏x偏w=2
+        partial_b = 2 * x + 3 * y
+        partial_w = 2 * y
+        # 同时求解w和b，将误差均分到w和b上
+        delta_b = delta_z / partial_b / 2
+        delta_w = delta_z / partial_w / 2
+        b = b - delta_b
+        w = w - delta_w
+        count = count + 1
+    print("done!\ntotal iteration times = %d" % count)
+    print("final b = %f" % b)
+    print("final w = %f" % w)
+```
+
 容易出现的问题：
 
 1. 在检查Δz时的值时，注意要用绝对值，因为有可能是个负数
@@ -178,9 +272,9 @@ $$ \frac{\partial{z}}{\partial{b}}=\frac{\partial{z}}{\partial{x}} \cdot \frac{\
 
 $$ \frac{\partial{z}}{\partial{w}}=\frac{\partial{z}}{\partial{x}} \cdot \frac{\partial{x}}{\partial{w}}+\frac{\partial{z}}{\partial{y}}\cdot\frac{\partial{y}}{\partial{w}}=y \cdot 2+x \cdot 0 = 2y $$
 
-所以，在每次迭代中，要重新计算下面两个值：
+所以，在每次迭代中，**要重新计算下面两个值**：
 
- $$ \Delta b=\frac{\Delta z}{3y+2x} $$ $$ \Delta w=\frac{\Delta z}{2y} $$
+ $$ \Delta b=\frac{\Delta z}{3y+2x} $$ $$ \Delta w=\frac{\Delta z}{2y}$$
 
 以下是程序的运行结果。
 
@@ -265,4 +359,115 @@ final w=2.661517
 ## 参考资料
 
 [http://colah.github.io/posts/2015-08-Backprop/](http://colah.github.io/posts/2015-08-Backprop/)
+
+## 完整代码
+
+原代码位置：[ch02, Level1](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch02-BASIC/Level1_BP_Linear.py)
+
+个人代码：
+
+```python
+def target_function(w, b):
+    x = 2 * w + 3 * b
+    y = 2 * b + 1
+    z = x * y
+    return x, y, z
+
+def back_propagation_for_w(w, b, t):
+    '''
+    反向传播求解w
+    :param w: 权重w
+    :param b: 权重b
+    :param t: 目标值t
+    :return:
+    '''
+    print("\nback_propagation_for_w ----- \n")
+    error = 1e-5
+    count = 1
+    while(True):
+        x, y ,z = target_function(w, b)
+        delta_z = z - t
+        print("w=%f,b=%f,z=%f,delta_z=%f" % (w, b, z, delta_z))
+        if abs(delta_z) < error:
+            break
+        # 偏z偏x=y
+        # 偏x偏w=2
+        partial_w = y * 2
+        delta_w = delta_z / partial_w
+        w = w - delta_w
+        count = count + 1
+    print("done!\ntotal iteration times = %d" % count)
+    print("final w = %f" % w)
+
+def back_propagation_for_b(w, b, t):
+    '''
+    反向传播求解b
+    :param w: 权重w
+    :param b: 权重b
+    :param t: 目标值t
+    :return:
+    '''
+    print("\nback_propagation_for_b ----- \n")
+    error = 1e-5
+    count = 1
+    while(True):
+        x, y ,z = target_function(w, b)
+        delta_z = z - t
+        print("w=%f,b=%f,z=%f,delta_z=%f" % (w, b, z, delta_z))
+        if abs(delta_z) < error:
+            break
+        # 偏z偏x=y
+        # 偏x偏b=3
+        # 偏z偏y=x
+        # 偏y偏b=2
+        partial_b = 2 * x + 3 * y
+        delta_b = delta_z / partial_b
+        b = b - delta_b
+        count = count + 1
+    print("done!\ntotal iteration times = %d" % count)
+    print("final b = %f" % b)
+
+def back_propagation_for_wb(w, b, t):
+    '''
+    反向传播求解wb
+    :param w: 权重w
+    :param b: 权重b
+    :param t: 目标值t
+    :return:
+    '''
+    print("\nback_propagation_for_wb ----- \n")
+    error = 1e-5
+    count = 1
+    while(True):
+        x, y ,z = target_function(w, b)
+        delta_z = z - t
+        print("w=%f,b=%f,z=%f,delta_z=%f" % (w, b, z, delta_z))
+        if abs(delta_z) < error:
+            break
+        # 偏z偏x=y
+        # 偏x偏b=3
+        # 偏z偏y=x
+        # 偏y偏b=2
+        # 偏z偏x=y
+        # 偏x偏w=2
+        partial_b = 2 * x + 3 * y
+        partial_w = 2 * y
+        # 同时求解w和b，将误差均分到w和b上
+        delta_b = delta_z / partial_b / 2
+        delta_w = delta_z / partial_w / 2
+        b = b - delta_b
+        w = w - delta_w
+        count = count + 1
+    print("done!\ntotal iteration times = %d" % count)
+    print("final b = %f" % b)
+    print("final w = %f" % w)
+
+if __name__ == '__main__':
+    w = 3
+    b = 4
+    t = 150
+    back_propagation_for_w(w, b, t)
+    back_propagation_for_b(w, b, t)
+    back_propagation_for_wb(w, b, t)
+```
 
