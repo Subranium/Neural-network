@@ -1,7 +1,5 @@
 # Neural-network
 
-![](.gitbook/assets/image%20%286%29.png)
-
 基础内容框架源自：[microsoft](https://github.com/microsoft)/[**ai-edu**](https://github.com/microsoft/ai-edu)**\(个人非常推荐的一套教程\)**
 
 > **For things I don't know how to build, I don't understand.**
