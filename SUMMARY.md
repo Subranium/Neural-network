@@ -12,4 +12,8 @@
 * [神经网络中的三个基本概念](ji-chu-zhi-shi/shen-jing-wang-luo-zhong-de-san-ge-ji-ben-gai-nian.md)
 * [线性反向传播](ji-chu-zhi-shi/xian-xing-fan-xiang-chuan-bo.md)
 * [非线性反向传播](ji-chu-zhi-shi/fei-xian-xing-fan-xiang-chuan-bo.md)
+* [梯度下降](ji-chu-zhi-shi/ti-du-xia-jiang.md)
+* [损失函数](ji-chu-zhi-shi/sun-shi-han-shu.md)
+* [均方差函数](ji-chu-zhi-shi/jun-fang-cha-han-shu.md)
+* [交叉熵损失函数](ji-chu-zhi-shi/jiao-cha-shang-sun-shi-han-shu.md)
 
