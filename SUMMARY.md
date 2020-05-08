@@ -4,7 +4,6 @@
 * [人工智能发展简史](ren-gong-zhi-neng-fa-zhan-jian-shi.md)
 * [人工智能的定义](ren-gong-zhi-neng-de-ding-yi.md)
 * [范式的演化](fan-shi-de-yan-hua.md)
-* [参考文献](can-kao-wen-xian.md)
 
 ## 基础知识
 
@@ -21,4 +20,9 @@
 
 * [线性回归](xian-xing-hui-gui/xian-xing-hui-gui.md)
 * [单入单出的单层神经网络](xian-xing-hui-gui/dan-ru-dan-chu-de-dan-ceng-shen-jing-wang-luo.md)
+* [最小二乘法](xian-xing-hui-gui/zui-xiao-er-cheng-fa.md)
+* [梯度下降法](xian-xing-hui-gui/ti-du-xia-jiang-fa.md)
+* [神经网络法](xian-xing-hui-gui/shen-jing-wang-luo-fa.md)
+* [多样本单特征值计算](xian-xing-hui-gui/duo-yang-ben-dan-te-zheng-zhi-ji-suan.md)
+* [参考文献](can-kao-wen-xian.md)
 
