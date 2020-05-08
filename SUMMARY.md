@@ -17,3 +17,8 @@
 * [均方差函数](ji-chu-zhi-shi/jun-fang-cha-han-shu.md)
 * [交叉熵损失函数](ji-chu-zhi-shi/jiao-cha-shang-sun-shi-han-shu.md)
 
+## 线性回归
+
+* [线性回归](xian-xing-hui-gui/xian-xing-hui-gui.md)
+* [单入单出的单层神经网络](xian-xing-hui-gui/dan-ru-dan-chu-de-dan-ceng-shen-jing-wang-luo.md)
+
