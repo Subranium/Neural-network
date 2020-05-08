@@ -107,7 +107,7 @@ done!
 
 第一步时c=1.177410，最后一步时c=2.129577，停止迭代。
 
-![](../.gitbook/assets/image%20%2841%29.png)
+![](../.gitbook/assets/image%20%2854%29.png)
 
 ## 完整代码
 

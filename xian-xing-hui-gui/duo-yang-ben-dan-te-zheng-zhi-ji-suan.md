@@ -9,43 +9,78 @@
 
 下面我们来看看多样本运算会对代码实现有什么影响，假设我们一次用3个样本来参与计算，每个样本只有1个特征值。
 
-## 4.4.1 前向计算
+## 前向计算
 
-由于有多个样本同时计算，所以我们使用$x\_i$表示第 $i$ 个样本，X是样本组成的矩阵，Z是计算结果矩阵，w和b都是标量：
+由于有多个样本同时计算，所以我们使用$$x_i$$表示第 $$i$$ 个样本，X是样本组成的矩阵，Z是计算结果矩阵，w和b都是标量：
 
 $$ Z = X \cdot w + b \tag{1} $$
 
 把它展开成3个样本（3行，每行代表一个样本）的形式：
 
-$$ X=\begin{pmatrix} x\_1 \ x\_2 \ x\_3 \end{pmatrix} $$
+$$
+\begin{aligned}
+&X=\left(\begin{array}{l}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{array}\right)\\
+&Z=\left(\begin{array}{l}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{array}\right) \cdot w+b\\
+&=\left(\begin{array}{l}
+x_{1} \cdot w+b \\
+x_{2} \cdot w+b \\
+x_{3} \cdot w+b
+\end{array}\right)=\left(\begin{array}{l}
+z_{1} \\
+z_{2} \\
+z_{3}
+\end{array}\right)
+\end{aligned} \tag{2}
+$$
 
-$$ Z= \begin{pmatrix} x\_1 \ x\_2 \ x\_3 \end{pmatrix} \cdot w + b =\begin{pmatrix} x\_1 \cdot w + b \ x\_2 \cdot w + b \ x\_3 \cdot w + b \end{pmatrix} =\begin{pmatrix} z\_1 \ z\_2 \ z\_3 \end{pmatrix} \tag{2} $$
+$$z_1、z_2、z_3$$是三个样本的计算结果。根据公式1和公式2，我们的前向计算python代码可以写成：
 
-$z\_1、z\_2、z\_3$是三个样本的计算结果。根据公式1和公式2，我们的前向计算python代码可以写成：
-
-```text
+```python
     def __forwardBatch(self, batch_x):
         Z = np.dot(batch_x, self.w) + self.b
         return Z
 ```
 
-Python中的矩阵乘法命名有些问题，np.dot\(\)并不是矩阵点乘，而是矩阵叉乘，请读者习惯。
+Python中的矩阵乘法命名有些问题，**np.dot\(\)并不是矩阵点乘，而是矩阵叉乘**，请读者习惯。
 
-## 4.4.2 损失函数
+{% hint style="info" %}
+矩阵叉乘
+
+矩阵的乘法就是矩阵A的第一行乘以矩阵B的第一列，各个元素对应相乘然后求和作为第一元素的值。矩阵只有当左边矩阵的列数等于右边矩阵的行数时,它们才可以相乘,乘积矩阵的行数等于左边矩阵的行数,乘积矩阵的列数等于右边矩阵的列数。
+
+矩阵的点乘
+
+就是矩阵各个对应元素相乘, 这个时候要求两个矩阵必须同样大小
+{% endhint %}
+
+## 损失函数
 
 用传统的均方差函数，其中，z是每一次迭代的预测输出，y是样本标签数据。我们使用m个样本参与计算，因此损失函数为：
 
-$$J\(w,b\) = \frac{1}{2m}\sum\_{i=1}^{m}\(z\_i - y\_i\)^2$$
+$$J(w,b) = \frac{1}{2m}\sum_{i=1}^{m}(z_i - y_i)^2$$
 
 其中的分母中有个2，实际上是想在求导数时把这个2约掉，没有什么原则上的区别。
 
-我们假设每次有3个样本参与计算，即m=3，则损失函数实例化后的情形是：
+我们假设**每次有3个样本参与计算**，即m=3，则损失函数实例化后的情形是：
 
-$$ \begin{aligned} J\(w,b\) &= \frac{1}{2\times3}\[\(z\_1-y\_1\)^2+\(z\_2-y\_2\)^2+\(z\_3-y\_3\)^2\] \ &=\frac{1}{2\times3}\sum\_{i=1}^3\[\(z\_i-y\_i\)^2\] \ \end{aligned} \tag{3} $$
+$$
+\begin{array}{c}
+J(w, b)=\frac{1}{2 \times 3}\left[\left(z_{1}-y_{1}\right)^{2}+\left(z_{2}-y_{2}\right)^{2}+\left(z_{3}-y_{3}\right)^{2}\right] \\
+=\operatorname{sum}\left[(Z-Y)^{2}\right] / 3 / 2 \tag{3}
+\end{array}
+$$
 
-公式3中大写的Z和Y都是矩阵形式，用代码实现：
+**公式3中大写的Z和Y都是矩阵形式**，用代码实现：
 
-```text
+```python
     def __checkLoss(self, dataReader):
         X,Y = dataReader.GetWholeTrainSamples()
         m = X.shape[0]
@@ -57,24 +92,77 @@ $$ \begin{aligned} J\(w,b\) &= \frac{1}{2\times3}\[\(z\_1-y\_1\)^2+\(z\_2-y\_2\)
 
 Python中的矩阵减法运算，不需要对矩阵中的每个对应的元素单独做减法，而是整个矩阵相减即可。做求和运算时，也不需要自己写代码做遍历每个元素，而是简单地调用求和函数即可。
 
-## 4.4.3 求w的梯度
+## 求w的梯度
 
-我们用 J 的值作为基准，去求 w 对它的影响，也就是 J 对 w 的偏导数，就可以得到w的梯度了。从公式3看 J 的计算过程，$z\_1、z\_2、z\_3$都对它有贡献；再从公式2看$z\_1、z\_2、z\_3$的生成过程，都有w的参与。所以，J 对 w 的偏导应该是这样的：
+我们用 J 的值作为基准，去求 w 对它的影响，也就是 J 对 w 的偏导数，就可以得到w的梯度了。从公式3看 J 的计算过程，$$z_1、z_2、z_3$$都对它有贡献；再从公式2看$$z_1、z_2、z_3$$的生成过程，都有w的参与。所以，J对w的偏导应该是这样的：
 
-$$ \begin{aligned} \frac{\partial{J}}{\partial{w}}&=\frac{\partial{J}}{\partial{z\_1}}\frac{\partial{z\_1}}{\partial{w}}+\frac{\partial{J}}{\partial{z\_2}}\frac{\partial{z\_2}}{\partial{w}}+\frac{\partial{J}}{\partial{z\_3}}\frac{\partial{z\_3}}{\partial{w}} \ &=\frac{1}{3}\[\(z\_1-y\_1\)x\_1+\(z\_2-y\_2\)x\_2+\(z\_3-y\_3\)x\_3\] \ &=\frac{1}{3} \begin{pmatrix} x\_1 & x\_2 & x\_3 \end{pmatrix} \begin{pmatrix} z\_1-y\_1 \ z\_2-y\_2 \ z\_3-y\_3 \end{pmatrix} \ &=\frac{1}{m} \sum^m\_{i=1} \(z\_i-y\_i\)x\_i \ &=\frac{1}{m} X^T \cdot \(Z-Y\) \ \end{aligned} \tag{4} $$
+$$
+\frac{\partial{J}}{\partial{w}}=\frac{\partial{J}}{\partial{z_1}}\frac{\partial{z_1}}{\partial{w}}+\frac{\partial{J}}{\partial{z_2}}\frac{\partial{z_2}}{\partial{w}}+\frac{\partial{J}}{\partial{z_3}}\frac{\partial{z_3}}{\partial{w}}
+$$
 
-其中： $$X = \begin{pmatrix} x\_1 \ x\_2 \ x\_3 \end{pmatrix}, X^T = \begin{pmatrix} x\_1 & x\_2 & x\_3 \end{pmatrix} $$
+$$
+=\frac{1}{3}[(z_1-y_1)x_1+(z_2-y_2)x_2+(z_3-y_3)x_3]
+$$
 
-公式4中最后两个等式其实是等价的，只不过倒数第二个公式用求和方式计算每个样本，最后一个公式用矩阵方式做一次性计算。
+$$
+=\frac{1}{3}
+\begin{pmatrix}
+    x_1 & x_2 & x_3
+\end{pmatrix}
+\begin{pmatrix}
+    z_1-y_1 \\
+    z_2-y_2 \\
+    z_3-y_3 
+\end{pmatrix} \tag{m=3}
+$$
 
-## 4.4.4 求b的梯度
+$$
+=\frac{1}{m} X^T \cdot (Z-Y) \tag{4}
+$$
 
-$$ \begin{aligned}  
- \frac{\partial{J}}{\partial{b}}&=\frac{\partial{J}}{\partial{z\_1}}\frac{\partial{z\_1}}{\partial{b}}+\frac{\partial{J}}{\partial{z\_2}}\frac{\partial{z\_2}}{\partial{b}}+\frac{\partial{J}}{\partial{z\_3}}\frac{\partial{z\_3}}{\partial{b}} \ &=\frac{1}{3}\[\(z\_1-y\_1\)+\(z\_2-y\_2\)+\(z\_3-y\_3\)\] \ &=\frac{1}{m} \sum^m\_{i=1} \(z\_i-y\_i\) \ &=\frac{1}{m}\(Z-Y\) \end{aligned} \tag{5} $$
+$$
+=\frac{1}{m} \sum^m_{i=1} (z_i-y_i)x_i \tag{5}
+$$
 
-公式5中最后两个等式也是等价的，在python中，可以直接用最后一个公式求矩阵的和，免去了一个个计算$z\_i-y\_i$最后再求和的麻烦，速度还快。
+其中： 
 
-```text
+$$
+X=\left(\begin{array}{l}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{array}\right)
+$$
+
+$$
+X^{T}=\left(\begin{array}{lll}
+x_{1} & x_{2} & x_{3}
+\end{array}\right)
+$$
+
+公式4和公式5其实是等价的，只不过公式5用求和方式计算每个样本，公式4用矩阵方式做一次性计算。
+
+## 求b的梯度
+
+$$
+\frac{\partial{J}}{\partial{b}}=\frac{\partial{J}}{\partial{z_1}}\frac{\partial{z_1}}{\partial{b}}+\frac{\partial{J}}{\partial{z_2}}\frac{\partial{z_2}}{\partial{b}}+\frac{\partial{J}}{\partial{z_3}}\frac{\partial{z_3}}{\partial{b}}
+$$
+
+$$
+=\frac{1}{3}[(z_1-y_1)+(z_2-y_2)+(z_3-y_3)]
+$$
+
+$$
+=\frac{1}{m}\cdot (Z-Y) \tag{6}
+$$
+
+$$
+=\frac{1}{m} \sum^m_{i=1} (z_i-y_i)\tag{7}
+$$
+
+公式6和公式7也是等价的，在python中，可以直接用公式6求矩阵的和，免去了一个个计算$$z_i-y_i$$最后再求和的麻烦，速度还快。
+
+```python
     def __backwardBatch(self, batch_x, batch_y, batch_z):
         m = batch_x.shape[0]
         dZ = batch_z - batch_y
@@ -85,5 +173,5 @@ $$ \begin{aligned}
 
 ## 代码位置
 
-ch04, HelperClass/NeuralNet.py
+[ch04, HelperClass/NeuralNet.py](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch04-SingleVariableLinearRegression/HelperClass/NeuralNet_1_0.py)
 

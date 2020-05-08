@@ -24,5 +24,6 @@
 * [梯度下降法](xian-xing-hui-gui/ti-du-xia-jiang-fa.md)
 * [神经网络法](xian-xing-hui-gui/shen-jing-wang-luo-fa.md)
 * [多样本单特征值计算](xian-xing-hui-gui/duo-yang-ben-dan-te-zheng-zhi-ji-suan.md)
+* [梯度下降的三种形式](xian-xing-hui-gui/ti-du-xia-jiang-de-san-zhong-xing-shi.md)
 * [参考文献](can-kao-wen-xian.md)
 
