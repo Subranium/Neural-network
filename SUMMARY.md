@@ -19,12 +19,14 @@
 ## 线性回归
 
 * [线性回归](xian-xing-hui-gui/xian-xing-hui-gui.md)
-* [单入单出的单层神经网络](xian-xing-hui-gui/dan-ru-dan-chu-de-dan-ceng-shen-jing-wang-luo.md)
+* [单入单出的单层神经网络-单变量线性回归](xian-xing-hui-gui/dan-ru-dan-chu-de-dan-ceng-shen-jing-wang-luo.md)
 * [最小二乘法](xian-xing-hui-gui/zui-xiao-er-cheng-fa.md)
 * [梯度下降法](xian-xing-hui-gui/ti-du-xia-jiang-fa.md)
 * [神经网络法](xian-xing-hui-gui/shen-jing-wang-luo-fa.md)
 * [多样本单特征值计算](xian-xing-hui-gui/duo-yang-ben-dan-te-zheng-zhi-ji-suan.md)
 * [梯度下降的三种形式](xian-xing-hui-gui/ti-du-xia-jiang-de-san-zhong-xing-shi.md)
+* [Untitled](xian-xing-hui-gui/untitled.md)
+* [Untitled](xian-xing-hui-gui/untitled-1.md)
 * [神经网络法](xian-xing-hui-gui/shen-jing-wang-luo-fa-1.md)
 * [参考文献](can-kao-wen-xian.md)
 
