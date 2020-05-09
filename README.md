@@ -2,6 +2,8 @@
 
 基础内容框架源自：[microsoft](https://github.com/microsoft)/[**ai-edu**](https://github.com/microsoft/ai-edu)**\(个人非常推荐的一套教程\)**
 
+![](.gitbook/assets/image%20%2827%29.png)
+
 > **For things I don't know how to build, I don't understand.**
 >
 > **如果我不能亲手搭建起来一个东西，那么我就不能理解它。 -- 美国物理学家理查德·费曼**
