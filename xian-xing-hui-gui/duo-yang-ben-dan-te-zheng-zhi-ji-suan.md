@@ -97,23 +97,17 @@ Python中的矩阵减法运算，不需要对矩阵中的每个对应的元素�
 我们用 J 的值作为基准，去求 w 对它的影响，也就是 J 对 w 的偏导数，就可以得到w的梯度了。从公式3看 J 的计算过程，$$z_1、z_2、z_3$$都对它有贡献；再从公式2看$$z_1、z_2、z_3$$的生成过程，都有w的参与。所以，J对w的偏导应该是这样的：
 
 $$
-\frac{\partial{J}}{\partial{w}}=\frac{\partial{J}}{\partial{z_1}}\frac{\partial{z_1}}{\partial{w}}+\frac{\partial{J}}{\partial{z_2}}\frac{\partial{z_2}}{\partial{w}}+\frac{\partial{J}}{\partial{z_3}}\frac{\partial{z_3}}{\partial{w}}
-$$
-
-$$
-=\frac{1}{3}[(z_1-y_1)x_1+(z_2-y_2)x_2+(z_3-y_3)x_3]
-$$
-
-$$
-=\frac{1}{3}
-\begin{pmatrix}
-    x_1 & x_2 & x_3
-\end{pmatrix}
-\begin{pmatrix}
-    z_1-y_1 \\
-    z_2-y_2 \\
-    z_3-y_3 
-\end{pmatrix} \tag{m=3}
+\begin{aligned}
+&\frac{\partial J}{\partial w}=\frac{\partial J}{\partial z_{1}} \frac{\partial z_{1}}{\partial w}+\frac{\partial J}{\partial z_{2}} \frac{\partial z_{2}}{\partial w}+\frac{\partial J}{\partial z_{3}} \frac{\partial z_{3}}{\partial w}\\
+&=\frac{1}{3}\left[\left(z_{1}-y_{1}\right) x_{1}+\left(z_{2}-y_{2}\right) x_{2}+\left(z_{3}-y_{3}\right) x_{3}\right]\\
+&=\frac{1}{3}\left(\begin{array}{lll}
+x_{1} & x_{2} & x_{3}
+\end{array}\right)\left(\begin{array}{l}
+z_{1}-y_{1} \\
+z_{2}-y_{2} \\
+z_{3}-y_{3}
+\end{array}\right)
+\end{aligned}
 $$
 
 $$
@@ -127,17 +121,16 @@ $$
 其中： 
 
 $$
-X=\left(\begin{array}{l}
+\begin{aligned}
+&X=\left(\begin{array}{l}
 x_{1} \\
 x_{2} \\
 x_{3}
-\end{array}\right)
-$$
-
-$$
-X^{T}=\left(\begin{array}{lll}
+\end{array}\right)\\
+&X^{T}=\left(\begin{array}{lll}
 x_{1} & x_{2} & x_{3}
 \end{array}\right)
+\end{aligned}
 $$
 
 公式4和公式5其实是等价的，只不过公式5用求和方式计算每个样本，公式4用矩阵方式做一次性计算。
