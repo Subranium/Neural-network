@@ -38,7 +38,7 @@ SDG\(Stochastic Grident Descent\)
 
 样本访问示意图如图4-7所示。
 
-![&#x56FE;4-7 &#x5355;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2853%29.png)
+![&#x56FE;4-7 &#x5355;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2854%29.png)
 
 ### 计算过程
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 梯度下降过程 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%2854%29.png)  | ![](../.gitbook/assets/image%20%2824%29.png)  |
+| ![](../.gitbook/assets/image%20%2855%29.png)  | ![](../.gitbook/assets/image%20%2824%29.png)  |
 
 表4-3的左图，由于我们使用了限定的停止条件，即当损失函数值小于等于0.02时停止训练，所以，单样本方式迭代了300次后达到了精度要求。
 
@@ -97,7 +97,7 @@ Mini-Batch Gradient Descent
 
 样本访问示意图如图4-8所示。
 
-![&#x56FE;4-8 &#x5C0F;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2849%29.png)
+![&#x56FE;4-8 &#x5C0F;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2850%29.png)
 
 ### 计算过程
 
@@ -152,7 +152,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 梯度下降过程 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%2856%29.png)  | ![](../.gitbook/assets/image%20%2821%29.png)  |
+| ![](../.gitbook/assets/image%20%2857%29.png)  | ![](../.gitbook/assets/image%20%2821%29.png)  |
 
 表4-4的右图，梯度下降时，在接近中心时有小波动。图太小看不清楚，可以用matplot工具放大局部来观察。和单样本方式比较，在中心区的波动已经缓解了很多。
 
@@ -172,7 +172,7 @@ Full Batch Gradient Descent
 
 样本访问示意图如图4-9所示。
 
-![&#x56FE;4-9 &#x5168;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2850%29.png)
+![&#x56FE;4-9 &#x5168;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2851%29.png)
 
 ### 计算过程
 
@@ -223,7 +223,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 梯度下降过程 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%2833%29.png)  | ![](../.gitbook/assets/image%20%2814%29.png)  |
+| ![](../.gitbook/assets/image%20%2834%29.png)  | ![](../.gitbook/assets/image%20%2814%29.png)  |
 
 表4-5中的右图，梯度下降时，在整个过程中只拐了一个弯儿，就直接到达了中心点。
 
@@ -262,13 +262,13 @@ if __name__ == '__main__':
 
 设置学习率：0.2，batch\_size：16，达到eps&lt;0.02，共用28个epoch
 
-![](../.gitbook/assets/image%20%2870%29.png)
+![](../.gitbook/assets/image%20%2871%29.png)
 
 （2）进一步提高精度（设置eps为更小的值），观察w和b的结果值以及拟合直线的位置
 
 设置eps为0.05
 
-![](../.gitbook/assets/image%20%2843%29.png)
+![](../.gitbook/assets/image%20%2844%29.png)
 
 （3）用纸笔推算一下矩阵运算的维度。假设：
 
