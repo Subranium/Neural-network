@@ -253,8 +253,6 @@ NumPy库的np.linspace\(0,1\)的含义，就是在\[0,1\]空间中生成50个等
 
 这下子我们可以大致放心了，神经网络的训练结果并没有错，一定是别的地方出了什么问题。在下一节中我们来一起看看问题出在哪里！
 
-其实原因就是我们没有对y也就是标签值进行归一化导致的，是的特征和标签不在一个尺度上，具体内容我们在下一小节进行分析。
-
 ## 代码位置
 
 [ch05, Level3](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch05-MultiVariableLinearRegression/level3_DataNormalization.py)

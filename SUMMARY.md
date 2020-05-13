@@ -31,5 +31,6 @@
 * [样本特征数据标准化](xian-xing-hui-gui/yang-ben-te-zheng-shu-ju-biao-zhun-hua.md)
 * [还原参数值](xian-xing-hui-gui/hai-yuan-can-shu-zhi.md)
 * [正确的推理预测方法](xian-xing-hui-gui/zheng-que-de-tui-li-yu-ce-fang-fa.md)
+* [对标签值标准化](xian-xing-hui-gui/dui-biao-qian-zhi-biao-zhun-hua.md)
 * [参考文献](can-kao-wen-xian.md)
 

@@ -1,18 +1,18 @@
 # 正确的推理预测方法
 
-## 5.5.1 预测数据的标准化
+## 预测数据的标准化
 
 在上一节中，我们在用训练出来的模型预测房屋价格之前，还需要先还原W和B的值，这看上去比较麻烦，下面我们来介绍一种正确的推理方法。
 
 既然我们在训练时可以把样本数据标准化，那么在预测时，把预测数据也做相同方式的标准化，不是就可以和训练数据一样进行预测了吗？且慢！这里有一个问题，训练时的样本数据是批量的，至少是成百成千的数量级。但是预测时，一般只有一个或几个数据，如何做标准化？
 
-我们在针对训练数据做标准化时，得到的最重要的数据是训练数据的最小值和最大值，我们只需要把这两个值记录下来，在预测时使用它们对预测数据做标准化，这就相当于把预测数据“混入”训练数据。前提是预测数据的特征值不能超出训练数据的特征值范围，否则有可能影响准确程度。
+我们在针对训练数据做标准化时，得到的最重要的数据是训练数据的最小值和最大值，我们只需要把这两个值记录下来，在预测时使用它们对预测数据做标准化，这就相当于把预测数据“混入”训练数据。**前提是预测数据的特征值不能超出训练数据的特征值范围，否则有可能影响准确程度。**
 
-## 5.5.2 代码实现
+## 代码实现
 
 基于这种想法，我们先给SimpleDataReader类增加一个方法NormalizePredicateData\(\)，如下述代码：
 
-```text
+```python
 class SimpleDataReader(object):
     # normalize data by self range and min_value
     def NormalizePredicateData(self, X_raw):
@@ -35,7 +35,7 @@ X\_norm数组中的数据，是在训练时从样本数据中得到的最大值�
 
 所以，最后X\_new就是按照训练样本的规格标准化好的预测标准化数据，然后我们把这个预测标准化数据放入网络中进行预测：
 
-```text
+```python
 import numpy as np
 from HelperClass.NeuralNet import *
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     print("Z=", z)
 ```
 
-## 5.5.3 运行结果
+## 运行结果
 
 ```text
 ......
@@ -85,5 +85,5 @@ z= 486.1051325196855
 
 ## 代码位置
 
-ch05, Level5
+[ch05, Level5](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch05-MultiVariableLinearRegression/level5_NormalizePredicateData.py)
 
