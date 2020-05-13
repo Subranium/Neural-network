@@ -12,7 +12,7 @@
 
 这个问题的原始值是可能是$$w=2，b=3$$，由于样本噪音的存在，使用最小二乘法得到了2.05、2.96这样的非整数解，这是完全可以接受的。但是使用梯度下降和神经网络两种方式，都得到1.71、3.19这样的值，准确程度很低。从图4-6的神经网络的训练结果来看，拟合直线是斜着穿过样本点区域的，并没有在正中央的骨架上。
 
-![&#x56FE;4-6 &#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%2812%29.png)
+![&#x56FE;4-6 &#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%2813%29.png)
 
 难道是神经网络方法有什么问题吗？
 
@@ -38,7 +38,7 @@ SDG\(Stochastic Grident Descent\)
 
 样本访问示意图如图4-7所示。
 
-![&#x56FE;4-7 &#x5355;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2860%29.png)
+![&#x56FE;4-7 &#x5355;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2864%29.png)
 
 ### 计算过程
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 梯度下降过程 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%2861%29.png)  | ![](../.gitbook/assets/image%20%2826%29.png)  |
+| ![](../.gitbook/assets/image%20%2865%29.png)  | ![](../.gitbook/assets/image%20%2828%29.png)  |
 
 表4-3的左图，由于我们使用了限定的停止条件，即当损失函数值小于等于0.02时停止训练，所以，单样本方式迭代了300次后达到了精度要求。
 
@@ -97,7 +97,7 @@ Mini-Batch Gradient Descent
 
 样本访问示意图如图4-8所示。
 
-![&#x56FE;4-8 &#x5C0F;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2856%29.png)
+![&#x56FE;4-8 &#x5C0F;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2860%29.png)
 
 ### 计算过程
 
@@ -152,7 +152,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 梯度下降过程 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%2863%29.png)  | ![](../.gitbook/assets/image%20%2823%29.png)  |
+| ![](../.gitbook/assets/image%20%2867%29.png)  | ![](../.gitbook/assets/image%20%2825%29.png)  |
 
 表4-4的右图，梯度下降时，在接近中心时有小波动。图太小看不清楚，可以用matplot工具放大局部来观察。和单样本方式比较，在中心区的波动已经缓解了很多。
 
@@ -172,7 +172,7 @@ Full Batch Gradient Descent
 
 样本访问示意图如图4-9所示。
 
-![&#x56FE;4-9 &#x5168;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2857%29.png)
+![&#x56FE;4-9 &#x5168;&#x6279;&#x91CF;&#x6837;&#x672C;&#x8BBF;&#x95EE;&#x65B9;&#x5F0F;](../.gitbook/assets/image%20%2861%29.png)
 
 ### 计算过程
 
@@ -223,7 +223,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 梯度下降过程 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%2837%29.png)  | ![](../.gitbook/assets/image%20%2816%29.png)  |
+| ![](../.gitbook/assets/image%20%2841%29.png)  | ![](../.gitbook/assets/image%20%2818%29.png)  |
 
 表4-5中的右图，梯度下降时，在整个过程中只拐了一个弯儿，就直接到达了中心点。
 
@@ -233,7 +233,7 @@ if __name__ == '__main__':
 
 |  | 单样本 | 小批量 | 全批量 |
 | :--- | :--- | :--- | :--- |
-| 梯度下降过程图解 | ![](../.gitbook/assets/image%20%2826%29.png)  | ![](../.gitbook/assets/image%20%2823%29.png)  | ![](../.gitbook/assets/image%20%2816%29.png)  |
+| 梯度下降过程图解 | ![](../.gitbook/assets/image%20%2828%29.png)  | ![](../.gitbook/assets/image%20%2825%29.png)  | ![](../.gitbook/assets/image%20%2818%29.png)  |
 | 批大小 | 1 | 10 | 100 |
 | 学习率 | 0.1 | 0.3 | 0.5 |
 | 迭代次数 | 304 | 110 | 60 |
@@ -242,7 +242,7 @@ if __name__ == '__main__':
 
 表4-6比较了三种方式的结果，从结果看，都接近于$$w=2,b=3$$的原始解。最后的可视化结果图如图4-10，可以看到直线已经处于样本点比较中间的位置。
 
-![&#x56FE;4-10 &#x8F83;&#x7406;&#x60F3;&#x7684;&#x62DF;&#x5408;&#x6548;&#x679C;&#x56FE;](../.gitbook/assets/image%20%2831%29.png)
+![&#x56FE;4-10 &#x8F83;&#x7406;&#x60F3;&#x7684;&#x62DF;&#x5408;&#x6548;&#x679C;&#x56FE;](../.gitbook/assets/image%20%2833%29.png)
 
 相关的概念：
 
@@ -262,13 +262,13 @@ if __name__ == '__main__':
 
 设置学习率：0.2，batch\_size：16，达到eps&lt;0.02，共用28个epoch
 
-![](../.gitbook/assets/image%20%2877%29.png)
+![](../.gitbook/assets/image%20%2882%29.png)
 
 （2）进一步提高精度（设置eps为更小的值），观察w和b的结果值以及拟合直线的位置
 
 设置eps为0.05
 
-![](../.gitbook/assets/image%20%2848%29.png)
+![](../.gitbook/assets/image%20%2852%29.png)
 
 
 

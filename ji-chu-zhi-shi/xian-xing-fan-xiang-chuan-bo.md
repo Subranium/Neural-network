@@ -22,13 +22,13 @@ def target_function(w,b):
 
 计算图如图2-4。
 
-![&#x56FE;2-4 &#x7B80;&#x5355;&#x7EBF;&#x6027;&#x8BA1;&#x7B97;&#x7684;&#x8BA1;&#x7B97;&#x56FE;](../.gitbook/assets/image%20%2872%29.png)
+![&#x56FE;2-4 &#x7B80;&#x5355;&#x7EBF;&#x6027;&#x8BA1;&#x7B97;&#x7684;&#x8BA1;&#x7B97;&#x56FE;](../.gitbook/assets/image%20%2877%29.png)
 
 **注意这里x, y, z不是变量，只是计算结果。w, b是才变量。**因为在后面要学习的神经网络中，要最终求解的目标是w和b的值，所以在这里先预热一下。
 
 当w = 3, b = 4时，会得到图2-5的结果。
 
-![&#x56FE;2-5 &#x8BA1;&#x7B97;&#x7ED3;&#x679C;](../.gitbook/assets/image%20%2852%29.png)
+![&#x56FE;2-5 &#x8BA1;&#x7B97;&#x7ED3;&#x679C;](../.gitbook/assets/image%20%2856%29.png)
 
 最终的z值，受到了前面很多因素的影响：变量w，变量b，计算式x，计算式y。
 
@@ -54,7 +54,7 @@ $$\frac{\partial{z}}{\partial{x}}=\frac{\partial{}}{\partial{x}}(x \cdot y)=y=9$
 
 $$\frac{\partial{x}}{\partial{w}}=\frac{\partial{}}{\partial{w}}(2w+3b)=2$$
 
-![&#x56FE;2-6 &#x5BF9;w&#x7684;&#x504F;&#x5BFC;&#x6C42;&#x89E3;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2822%29.png)
+![&#x56FE;2-6 &#x5BF9;w&#x7684;&#x504F;&#x5BFC;&#x6C42;&#x89E3;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2824%29.png)
 
 图2-6其实就是链式法则的具体表现，z的误差通过中间的x传递到w。如果不是用链式法则，而是直接用z的表达式计算对w的偏导数，会是什么样呢？我们来试验一下。
 
@@ -129,7 +129,7 @@ def back_propagation_for_w(w, b, t):
 1. 从z到x到b
 2. 从z到y到b
 
-![&#x56FE;2-7 &#x5BF9;b&#x7684;&#x504F;&#x5BFC;&#x6C42;&#x89E3;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2867%29.png)
+![&#x56FE;2-7 &#x5BF9;b&#x7684;&#x504F;&#x5BFC;&#x6C42;&#x89E3;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2872%29.png)
 
 从复合导数公式来看，这两者应该是相加的关系，所以有：
 

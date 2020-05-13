@@ -2,7 +2,7 @@
 
 基础内容框架源自：[microsoft](https://github.com/microsoft)/[**ai-edu**](https://github.com/microsoft/ai-edu)**\(个人非常推荐的一套教程\)**
 
-![](.gitbook/assets/image%20%2829%29.png)
+![](.gitbook/assets/image%20%2831%29.png)
 
 > **For things I don't know how to build, I don't understand.**
 >
