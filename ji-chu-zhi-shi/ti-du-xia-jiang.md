@@ -40,7 +40,7 @@ $$\theta_{n+1} = \theta_{n} - \eta \cdot \nabla J(\theta) \tag{1}$$
 
 亦即与上升相反的方向运动，就是下降。
 
-![&#x56FE;2-9 &#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x7684;&#x6B65;&#x9AA4;](../.gitbook/assets/image%20%2844%29.png)
+![&#x56FE;2-9 &#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x7684;&#x6B65;&#x9AA4;](../.gitbook/assets/image%20%2846%29.png)
 
 图2-9解释了在函数极值点的两侧做梯度下降的计算过程，梯度下降的目的就是使得x值向极值点逼近。
 
@@ -102,7 +102,7 @@ x=0.030720, y=0.000944
 
 上面的过程如图2-10所示。
 
-![&#x56FE;2-10 &#x4F7F;&#x7528;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;&#x8FED;&#x4EE3;&#x7684;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2866%29.png)
+![&#x56FE;2-10 &#x4F7F;&#x7528;&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;&#x8FED;&#x4EE3;&#x7684;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%2869%29.png)
 
 ## 双变量的梯度下降
 
@@ -196,7 +196,7 @@ def show_3d_surface(x, y, z):
 
 | 观察角度1 | 观察角度2 |
 | :---: | :---: |
-| ![](../.gitbook/assets/image%20%2865%29.png)  | ![](../.gitbook/assets/image%20%2875%29.png)  |
+| ![](../.gitbook/assets/image%20%2868%29.png)  | ![](../.gitbook/assets/image%20%2878%29.png)  |
 
 ## 学习率η的选择
 
@@ -206,12 +206,12 @@ def show_3d_surface(x, y, z):
 
 | 学习率 | 迭代路线图 | 说明 |
 | :--- | :---: | :---: |
-| 1.0 | ![](../.gitbook/assets/image%20%2868%29.png)  | 学习率太大，迭代的情况很糟糕，在一条水平线上跳来跳去，永远也不能下降。 |
-| 0.8 | ![](../.gitbook/assets/image%20%2867%29.png)  | 学习率大，会有这种左右跳跃的情况发生，这不利于神经网络的训练。 |
-| 0.4 | ![](../.gitbook/assets/image%20%2871%29.png)  | 学习率合适，损失值会从单侧下降，4步以后基本接近了理想值。 |
-| 0.1 | ![](../.gitbook/assets/image%20%2818%29.png)  | 学习率较小，损失值会从单侧下降，但下降速度非常慢，10步了还没有到达理想状态。 |
+| 1.0 | ![](../.gitbook/assets/image%20%2871%29.png)  | 学习率太大，迭代的情况很糟糕，在一条水平线上跳来跳去，永远也不能下降。 |
+| 0.8 | ![](../.gitbook/assets/image%20%2870%29.png)  | 学习率大，会有这种左右跳跃的情况发生，这不利于神经网络的训练。 |
+| 0.4 | ![](../.gitbook/assets/image%20%2874%29.png)  | 学习率合适，损失值会从单侧下降，4步以后基本接近了理想值。 |
+| 0.1 | ![](../.gitbook/assets/image%20%2820%29.png)  | 学习率较小，损失值会从单侧下降，但下降速度非常慢，10步了还没有到达理想状态。 |
 
-![](../.gitbook/assets/image%20%2832%29.png)
+![](../.gitbook/assets/image%20%2834%29.png)
 
 ## 代码位置
 

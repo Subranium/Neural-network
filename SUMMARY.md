@@ -28,5 +28,6 @@
 * [多入单出的单层神经网络](xian-xing-hui-gui/untitled.md)
 * [正规方程解法](xian-xing-hui-gui/untitled-1.md)
 * [神经网络法](xian-xing-hui-gui/shen-jing-wang-luo-fa-1.md)
+* [样本特征数据标准化](xian-xing-hui-gui/yang-ben-te-zheng-shu-ju-biao-zhun-hua.md)
 * [参考文献](can-kao-wen-xian.md)
 

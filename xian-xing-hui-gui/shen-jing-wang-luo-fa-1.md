@@ -10,7 +10,7 @@
 2. 输出层只有一个神经元；
 3. 神经元有一个线性输出，不经过激活函数处理，即在下图中，经过$$\Sigma$$求和得到$$Z$$值之后，直接把$$Z$$值输出。
 
-![&#x56FE;5-1 &#x591A;&#x5165;&#x5355;&#x51FA;&#x7684;&#x5355;&#x5C42;&#x795E;&#x7ECF;&#x5143;&#x7ED3;&#x6784;](../.gitbook/assets/image%20%2842%29.png)
+![&#x56FE;5-1 &#x591A;&#x5165;&#x5355;&#x51FA;&#x7684;&#x5355;&#x5C42;&#x795E;&#x7ECF;&#x5143;&#x7ED3;&#x6784;](../.gitbook/assets/image%20%2844%29.png)
 
 与上一章的神经元相比，这次仅仅是多了一个输入，但却是质的变化，即，一个神经元可以同时接收多个输入，这是神经网络能够处理复杂逻辑的根本。
 
@@ -96,7 +96,7 @@ $$
 
 其中偏置b本来为一行要与之前其他项的计算得益于numpy的广播机制，numpy的广播机制如下
 
-![](../.gitbook/assets/image%20%2833%29.png)
+![](../.gitbook/assets/image%20%2835%29.png)
 
 写成矩阵形式：
 
@@ -191,7 +191,7 @@ $$ {\partial J \over \partial B}={1 \over m}(Z-Y) \tag{8} $$
 
 但是在初始化时，我们必须手动指定x和w的形状，如下面的代码所示：
 
-```text
+```python
 if __name__ == '__main__':
     # net
     params = HyperParameters(2, 1, eta=0.1, max_epoch=100, batch_size=1, eps = 1e-5)
@@ -212,7 +212,7 @@ if __name__ == '__main__':
 
 在下面的神经网络的初始化代码中，W的初始化是根据input\_size和output\_size的值进行的。
 
-```text
+```python
 class NeuralNet(object):
     def __init__(self, params):
         self.params = params
@@ -222,7 +222,7 @@ class NeuralNet(object):
 
 ### 正向计算的代码
 
-```text
+```python
 class NeuralNet(object):
     def __forwardBatch(self, batch_x):
         Z = np.dot(batch_x, self.W) + self.B
@@ -231,7 +231,7 @@ class NeuralNet(object):
 
 ### 误差反向传播的代码
 
-```text
+```python
 class NeuralNet(object):
     def __backwardBatch(self, batch_x, batch_y, batch_z):
         m = batch_x.shape[0]
@@ -241,11 +241,11 @@ class NeuralNet(object):
         return dW, dB
 ```
 
-## 5.2.4 运行结果
+## 运行结果
 
-在Visual Studio 2017中，可以使用Ctrl+F5运行Level2的代码，但是，会遇到一个令人沮丧的打印输出：
+运行代码后，会遇到一个令人沮丧的打印输出：
 
-```text
+```python
 epoch=0
 NeuralNet.py:32: RuntimeWarning: invalid value encountered in subtract
   self.W = self.W - self.params.eta * dW
@@ -263,7 +263,7 @@ epoch=3
 
 nan的意思是数值异常，导致计算溢出了，出现了没有意义的数值。现在是每500个迭代监控一次，我们把监控频率调小一些，再试试看：
 
-```text
+```python
 epoch=0
 0 10 6.838664338516814e+66
 0 20 2.665505502247752e+123
@@ -283,17 +283,17 @@ NeuralNet.py:32: RuntimeWarning: invalid value encountered in subtract
 
 前10次迭代，损失函数值已经达到了6.83e+66，而且越往后运行值越大，最后终于溢出了。下面的损失函数历史记录也表明了这一过程。
 
-图5-2 训练过程中损失函数值的变化
+![&#x56FE;5-2 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%2854%29.png)
 
-## 5.2.5 寻找失败的原因
+## 寻找失败的原因
 
 我们可以在NeuralNet.py文件中，在图5-3代码行上设置断点，跟踪一下训练过程，以便找到问题所在。
 
-图5-3 在VisualStudio中Debug
+![&#x56FE;5-3 &#x5728;VisualStudio&#x4E2D;Debug](../.gitbook/assets/image%20%282%29.png)
 
 在VS2017中用F5运行debug模式，看第50行的结果：
 
-```text
+```python
 batch_x
 array([[ 4.96071728, 41.        ]])
 batch_y
@@ -302,14 +302,14 @@ array([[244.07856544]])
 
 返回的样本数据是正常的。再看下一行：
 
-```text
+```python
 batch_z
 array([[0.]])
 ```
 
 第一次运行前向计算，由于W和B初始值都是0，所以z也是0，这是正常的。再看下一行：
 
-```text
+```python
 dW
 array([[ -1210.80475712],
        [-10007.22118309]])
@@ -319,13 +319,13 @@ array([[-244.07856544]])
 
 dW和dB的值都非常大，这是因为图5-4所示这行代码。
 
-图5-4 有问题的代码行
+![&#x56FE;5-4 &#x6709;&#x95EE;&#x9898;&#x7684;&#x4EE3;&#x7801;&#x884C;](../.gitbook/assets/image%20%2810%29.png)
 
 batch\_z是0，batch\_y是244.078，二者相减，是-244.078，因此dB就是-244.078，dW因为矩阵乘了batch\_x，值就更大了。
 
 再看W和B的更新值，一样很大：
 
-```text
+```python
 self.W
 array([[ 121.08047571],
        [1000.72211831]])
@@ -335,7 +335,7 @@ array([[24.40785654]])
 
 如果W和B的值很大，那么再下一轮进行前向计算时，会得到更糟糕的结果：
 
-```text
+```python
 batch_z
 array([[82459.53752331]])
 ```
@@ -344,7 +344,9 @@ array([[82459.53752331]])
 
 那么我们到底遇到了什么情况？
 
+其实是因为样本的特征值不再一个尺度上导致的，我们需要对数据先进性一个归一化操作，这里我们放在下一节进行分析。
+
 ## 代码位置
 
-ch05, Level2
+[ch05, Level2](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch05-MultiVariableLinearRegression/level2_NeuralNetwork.py)
 
