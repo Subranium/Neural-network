@@ -25,8 +25,8 @@
 * [神经网络法](xian-xing-hui-gui/shen-jing-wang-luo-fa.md)
 * [多样本单特征值计算](xian-xing-hui-gui/duo-yang-ben-dan-te-zheng-zhi-ji-suan.md)
 * [梯度下降的三种形式](xian-xing-hui-gui/ti-du-xia-jiang-de-san-zhong-xing-shi.md)
-* [Untitled](xian-xing-hui-gui/untitled.md)
-* [Untitled](xian-xing-hui-gui/untitled-1.md)
+* [多入单出的单层神经网络](xian-xing-hui-gui/untitled.md)
+* [正规方程解法](xian-xing-hui-gui/untitled-1.md)
 * [神经网络法](xian-xing-hui-gui/shen-jing-wang-luo-fa-1.md)
 * [参考文献](can-kao-wen-xian.md)
 

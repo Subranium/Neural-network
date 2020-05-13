@@ -132,40 +132,62 @@ $$
 
 由于$$W$$被分成了$$w1$$和$$w2$$两部分，根据公式1和公式2，我们单独对它们求导：
 
-$$ \frac{\partial loss}{\partial w\_1}=\frac{\partial loss}{\partial z\_i}\frac{\partial z\_i}{\partial w\_1}=\(z\_i-y\_i\) \cdot x\_{i1} \tag{3} $$ $$ \frac{\partial loss}{\partial w\_2}=\frac{\partial loss}{\partial z\_i}\frac{\partial z\_i}{\partial w\_2}=\(z\_i-y\_i\) \cdot x\_{i2} \tag{4} $$
+$$ \frac{\partial loss}{\partial w_1}=\frac{\partial loss}{\partial z_i}\frac{\partial z_i}{\partial w_1}=(z_i-y_i) \cdot x_{i1} \tag{3} $$
 
-求损失函数对$W$矩阵的偏导是无法直接求的，所以要变成求各个$W$的分量的偏导。由于$W$的形状是：
+$$ \frac{\partial loss}{\partial w_2}=\frac{\partial loss}{\partial z_i}\frac{\partial z_i}{\partial w_2}=(z_i-y_i) \cdot x_{i2} \tag{4} $$
 
-$$ W= \begin{pmatrix} w\_1 \ w\_2 \end{pmatrix} $$
+求损失函数对$$W$$矩阵的偏导是无法直接求的，所以要变成求各个$$W$$的分量的偏导。由于$$W$$的形状是：
 
-所以求$loss$对$W$的偏导，由于$W$是个矩阵，所以应该这样写：
+$$
+W=\left(\begin{array}{l}
+w_{1} \\
+w_{2}
+\end{array}\right)
+$$
 
-$$ \begin{aligned}  
- \frac{\partial loss}{\partial W}&= \begin{pmatrix} {\partial loss}/{\partial w\_1} \ \ {\partial loss}/{\partial w\_2} \end{pmatrix} =\begin{pmatrix} \(z\_i-y\_i\)\cdot x\_{i1} \ \(z\_i-y\_i\) \cdot x\_{i2} \end{pmatrix} \ &=\begin{pmatrix} x\_{i1} \ x\_{i2} \end{pmatrix} \(z\_i-y\_i\) =\begin{pmatrix} x\_{i1} & x\_{i2} \end{pmatrix}^T\(z\_i-y\_i\) \ &=x\_i^T\(z\_i-y\_i\) \end{aligned} \tag{5} $$
+所以求$$loss$$对$$W$$的偏导，由于$$W$$是个矩阵，所以应该这样写：
 
-$$ {\partial loss \over \partial B}=z\_i-y\_i \tag{6} $$
+$$
+\begin{array}{l}
+\frac{\partial \operatorname{loss}}{\partial W}=\left(\begin{array}{c}
+\frac{\partial \operatorname{loss}}{\partial w_{1}} \\
+\frac{\partial \operatorname{loss}}{\partial w_{2}}
+\end{array}\right) \\
+=\left(\begin{array}{c}
+\left(z_{i}-y_{i}\right) \cdot x_{i 1} \\
+\left(z_{i}-y_{i}\right) \cdot x_{i 2}
+\end{array}\right) \\
+=\left(\begin{array}{c}
+x_{i 1} \\
+x_{i 2}
+\end{array}\right)\left(z_{i}-y_{i}\right) \\
+=\left(\begin{array}{ll}
+x_{i 1} & x_{i 2}
+\end{array}\right)^{T}\left(z_{i}-y_{i}\right)=x_{i}^{T}\left(z_{i}-y_{i}\right)
+\end{array} \tag{5}
+$$
+
+$$ {\partial loss \over \partial B}=z_i-y_i \tag{6} $$
 
 ### 多样本多特征计算
 
 当进行多样本计算时，我们用m=3个样本做一个实例化推导：
 
-$$ z\_1 = x\_{11}w\_1+x\_{12}w\_2+b $$
+$$ z_1 = x_{11}w_1+x_{12}w_2+b $$
 
-$$ z\_2= x\_{21}w\_1+x\_{22}w\_2+b $$
+$$ z_2= x_{21}w_1+x_{22}w_2+b $$
 
-$$ z\_3 = x\_{31}w\_1+x\_{32}w\_2+b $$
+$$ z_3 = x_{31}w_1+x_{32}w_2+b $$
 
-$$ J\(w,b\) = \frac{1}{2 \times 3}\[\(z\_1-y\_1\)^2+\(z\_2-y\_2\)^2+\(z\_3-y\_3\)^2\] $$
+$$ J(w,b) = \frac{1}{2 \times 3}[(z_1-y_1)^2+(z_2-y_2)^2+(z_3-y_3)^2] $$
 
-$$ \begin{aligned}  
- \frac{\partial J}{\partial W}&= \begin{pmatrix} \frac{\partial J}{\partial w\_1} \ \ \frac{\partial J}{\partial w\_2} \end{pmatrix} =\begin{pmatrix} \frac{\partial J}{\partial z\_1}\frac{\partial z\_1}{\partial w\_1}+\frac{\partial J}{\partial z\_2}\frac{\partial z\_2}{\partial w\_1}+\frac{\partial J}{\partial z\_3}\frac{\partial z\_3}{\partial w\_1} \ \ \frac{\partial J}{\partial z\_1}\frac{\partial z\_1}{\partial w\_2}+\frac{\partial J}{\partial z\_2}\frac{\partial z\_2}{\partial w\_2}+\frac{\partial J}{\partial z\_3}\frac{\partial z\_3}{\partial w\_2}  
- \end{pmatrix} \ &=\begin{pmatrix} \frac{1}{3}\(z\_1-y\_1\)x\_{11}+\frac{1}{3}\(z\_2-y\_2\)x\_{21}+\frac{1}{3}\(z\_3-y\_3\)x\_{31} \ \frac{1}{3}\(z\_1-y\_1\)x\_{12}+\frac{1}{3}\(z\_2-y\_2\)x\_{22}+\frac{1}{3}\(z\_3-y\_3\)x\_{32} \end{pmatrix} \ &=\frac{1}{3} \begin{pmatrix} x\_{11} & x\_{21} & x\_{31} \ x\_{12} & x\_{22} & x\_{32} \end{pmatrix} \begin{pmatrix} z\_1-y\_1 \ z\_2-y\_2 \ z\_3-y\_3 \end{pmatrix} \ &=\frac{1}{3} \begin{pmatrix} x\_{11} & x\_{12} \ x\_{21} & x\_{22} \ x\_{31} & x\_{32} \end{pmatrix}^T \begin{pmatrix} z\_1-y\_1 \ z\_2-y\_2 \ z\_3-y\_3 \end{pmatrix} \ &=\frac{1}{m}X^T\(Z-Y\) \end{aligned} \tag{7} $$
+![](https://cdn.mathpix.com/snip/images/l4ASRinGMpZXEFKwi9jA82NJz0n4spdC2HXTtj8NEKs.original.fullsize.png)
 
-$$ {\partial J \over \partial B}={1 \over m}\(Z-Y\) \tag{8} $$
+$$ {\partial J \over \partial B}={1 \over m}(Z-Y) \tag{8} $$
 
-## 5.2.3 代码实现
+## 代码实现
 
-公式6和第4.4节中的公式5一样，所以我们依然采用第四章中已经写好的HelperClass目录中的那些类，来表示我们的神经网络。虽然此次神经元多了一个输入，但是不用改代码就可以适应这种变化，因为在前向计算代码中，使用的是矩阵乘的方式，可以自动适应x的多个列的输入，只要对应的w的矩阵形状是正确的即可。
+公式6和[多样本单特征值计算](duo-yang-ben-dan-te-zheng-zhi-ji-suan.md)中的公式5一样，所以我们依然采用之前已经写好的HelperClass目录中的那些类，来表示我们的神经网络。虽然此次神经元多了一个输入，但是不用改代码就可以适应这种变化，因为在前向计算代码中，使用的是矩阵乘的方式，可以自动适应x的多个列的输入，只要对应的w的矩阵形状是正确的即可。
 
 但是在初始化时，我们必须手动指定x和w的形状，如下面的代码所示：
 
