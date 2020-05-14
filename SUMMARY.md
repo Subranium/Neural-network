@@ -15,6 +15,7 @@
 * [损失函数](ji-chu-zhi-shi/sun-shi-han-shu.md)
 * [均方差函数](ji-chu-zhi-shi/jun-fang-cha-han-shu.md)
 * [交叉熵损失函数](ji-chu-zhi-shi/jiao-cha-shang-sun-shi-han-shu.md)
+* [回归常用评价指标](ji-chu-zhi-shi/hui-gui-chang-yong-ping-jia-zhi-biao.md)
 
 ## 线性回归
 
