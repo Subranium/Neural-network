@@ -37,6 +37,9 @@ $$
 
 ```python
 metrics.mean_squared_error(y_true, y_pred)
+
+def MSE(y_true, y_pred):
+    return np.average((y_true - y_pred) ** 2, axis=0)
 ```
 
 ## RMSE
@@ -47,8 +50,11 @@ $$
 R M S E=\sqrt{\frac{1}{n} \sum_{i=1}^{n}\left(\hat{y}_{i}-y_{i}\right)^{2}}
 $$
 
-```text
+```python
 np.sqrt(metrics.mean_squared_error(y_true, y_pred))
+
+def RMSE(y_true, y_pred):
+    return np.sqrt(np.average((y_true - y_pred) ** 2, axis=0))
 ```
 
 ## MAE
@@ -59,8 +65,11 @@ $$
 M A E=\frac{1}{n} \sum_{i=1}^{n}\left|\hat{y}_{i}-y_{i}\right|
 $$
 
-```text
+```python
 metrics.mean_absolute_error(y_true, y_pred)
+
+def MAE(y_true, y_pred):
+    return np.average(np.abs(y_pred - y_true), axis=0)
 ```
 
 ## MAPE
@@ -72,8 +81,8 @@ M A P E=\frac{100 \%}{n} \sum_{i=1}^{n}\left|\frac{\hat{y}_{i}-y_{i}}{y_{i}}\rig
 $$
 
 ```python
-def mape(y_true, y_pred):
-    return np.mean(np.abs((y_pred - y_true) / y_true)) * 100
+def MAPE(y_true, y_pred):
+    return np.average(np.abs((y_pred - y_true) / y_true), axis=0) * 100
 ```
 
 ## SMAPE
@@ -85,7 +94,7 @@ S M A P E=\frac{100 \%}{n} \sum_{i=1}^{n} \frac{\left|\hat{y}_{i}-y_{i}\right|}{
 $$
 
 ```python
-def smape(y_true, y_pred):
-    return 2.0 * np.mean(np.abs(y_pred - y_true) / (np.abs(y_pred) + np.abs(y_true))) * 100
+def SMAPE(y_true, y_pred):
+    return 2.0 * np.average(np.abs(y_pred - y_true) / (np.abs(y_pred) + np.abs(y_true)), axis=0) * 100
 ```
 
