@@ -16,7 +16,7 @@
 
 我们是首次尝试建立神经网络，先用一个最简单的单层单点神经元，如图4-4所示。
 
-![&#x56FE;4-4 &#x5355;&#x5C42;&#x5355;&#x70B9;&#x795E;&#x7ECF;&#x5143;](../.gitbook/assets/image%20%2827%29.png)
+![&#x56FE;4-4 &#x5355;&#x5C42;&#x5355;&#x70B9;&#x795E;&#x7ECF;&#x5143;](../.gitbook/assets/image%20%2828%29.png)
 
 下面，我们用这个最简单的线性回归的例子，来说明神经网络中最重要的反向传播和梯度下降的概念、过程以及代码实现。
 
@@ -185,7 +185,7 @@ def ShowResult(net, dataReader):
 
 在上面的函数中，先获得所有样本点数据，把它们绘制出来。然后在\[0,1\]之间等距设定10个点做为x值，用x值通过网络推理方法net.inference\(\)获得每个点的y值，最后把这些点连起来，就可以画出图4-5中的拟合直线。
 
-![&#x56FE;4-5 &#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%2871%29.png)
+![&#x56FE;4-5 &#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%2872%29.png)
 
 可以看到红色直线虽然穿过了蓝色点阵，但是好像不是处于正中央的位置，应该再逆时针旋转几度才会达到最佳的位置。我们后面小节中会讲到如何提高训练结果的精度问题。
 
@@ -265,6 +265,7 @@ if __name__ == '__main__':
     print(y.shape)
 
     model = build_model()
+    # 这里是每次仅使用一个样本，且仅训练一轮的情况下的效果
     model.fit(x, y, epochs=1, batch_size=1)
     w, b = model.layers[0].get_weights()
     print(w, b)
@@ -277,5 +278,69 @@ if __name__ == '__main__':
 w=2.7211757,b=2.360211
 ```
 
-![](../.gitbook/assets/image%20%2882%29.png)
+![](../.gitbook/assets/image%20%2883%29.png)
+
+当然我们也可以多训练几次，在这里我们使用一下early\_stopping
+
+```python
+from keras.layers import Dense
+from keras.models import Sequential
+from keras.callbacks import EarlyStopping
+
+from HelperClass.DataReader_1_0 import *
+
+import matplotlib.pyplot as plt
+
+
+def get_data():
+    sdr = DataReader_1_0("../data/ch04.npz")
+    sdr.ReadData()
+    X,Y = sdr.GetWholeTrainSamples()
+    return X, Y
+
+
+def build_model():
+    model = Sequential()
+    model.add(Dense(1, activation='linear', input_dim=1))
+    model.compile(optimizer='SGD',
+                  loss='mse')
+    return model
+
+
+def plt_data(x, y, model):
+    # draw sample data
+    plt.plot(x, y, "b.")
+    # draw predication data
+    PX = np.linspace(0,1,10)
+    PZ = model.predict(PX)
+    plt.plot(PX, PZ, "r")
+    plt.title("Air Conditioner Power")
+    plt.xlabel("Number of Servers(K)")
+    plt.ylabel("Power of Air Conditioner(KW)")
+    plt.show()
+
+
+if __name__ == '__main__':
+    X, Y = get_data()
+    x = np.array(X)
+    y = np.array(Y)
+    print(x.shape)
+    print(y.shape)
+
+    model = build_model()
+    # patience设置当发现loss没有下降的情况下，经过patience个epoch后停止训练
+    early_stopping = EarlyStopping(monitor='loss', patience=100)
+    model.fit(x, y, epochs=100, batch_size=10, callbacks=[early_stopping])
+    w, b = model.layers[0].get_weights()
+    print(w, b)
+    plt_data(x, y, model)
+```
+
+此时输出
+
+```python
+w=1.8036981, b=3.095605
+```
+
+![](../.gitbook/assets/image%20%2825%29.png)
 

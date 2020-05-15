@@ -10,7 +10,7 @@
 2. 输出层只有一个神经元；
 3. 神经元有一个线性输出，不经过激活函数处理，即在下图中，经过$$\Sigma$$求和得到$$Z$$值之后，直接把$$Z$$值输出。
 
-![&#x56FE;5-1 &#x591A;&#x5165;&#x5355;&#x51FA;&#x7684;&#x5355;&#x5C42;&#x795E;&#x7ECF;&#x5143;&#x7ED3;&#x6784;](../.gitbook/assets/image%20%2848%29.png)
+![&#x56FE;5-1 &#x591A;&#x5165;&#x5355;&#x51FA;&#x7684;&#x5355;&#x5C42;&#x795E;&#x7ECF;&#x5143;&#x7ED3;&#x6784;](../.gitbook/assets/image%20%2849%29.png)
 
 与上一章的神经元相比，这次仅仅是多了一个输入，但却是质的变化，即，一个神经元可以同时接收多个输入，这是神经网络能够处理复杂逻辑的根本。
 
@@ -96,7 +96,7 @@ $$
 
 其中偏置b本来为一行要与之前其他项的计算得益于numpy的广播机制，numpy的广播机制如下
 
-![](../.gitbook/assets/image%20%2839%29.png)
+![](../.gitbook/assets/image%20%2840%29.png)
 
 写成矩阵形式：
 
@@ -283,7 +283,7 @@ NeuralNet.py:32: RuntimeWarning: invalid value encountered in subtract
 
 前10次迭代，损失函数值已经达到了6.83e+66，而且越往后运行值越大，最后终于溢出了。下面的损失函数历史记录也表明了这一过程。
 
-![&#x56FE;5-2 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%2858%29.png)
+![&#x56FE;5-2 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%2859%29.png)
 
 ## 寻找失败的原因
 
@@ -348,5 +348,11 @@ array([[82459.53752331]])
 
 ## 代码位置
 
-[ch05, Level2](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch05-MultiVariableLinearRegression/level2_NeuralNetwork.py)
+原代码位置：[ch05, Level2](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch05-MultiVariableLinearRegression/level2_NeuralNetwork.py)
+
+个人代码：[NeuralNetwork](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/MultiVariableLinearRegression/NeuralNetwork.py)
+
+## keras实现多入单出线性回归
+
+
 
