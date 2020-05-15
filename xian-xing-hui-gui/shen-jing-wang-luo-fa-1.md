@@ -352,7 +352,5 @@ array([[82459.53752331]])
 
 个人代码：[NeuralNetwork](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/MultiVariableLinearRegression/NeuralNetwork.py)
 
-## keras实现多入单出线性回归
-
 
 
