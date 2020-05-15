@@ -262,7 +262,7 @@ if __name__ == '__main__':
 
 设置学习率：0.2，batch\_size：16，达到eps&lt;0.02，共用28个epoch
 
-![](../.gitbook/assets/image%20%2882%29.png)
+![](../.gitbook/assets/image%20%2883%29.png)
 
 （2）进一步提高精度（设置eps为更小的值），观察w和b的结果值以及拟合直线的位置
 

@@ -99,7 +99,7 @@ $$
 \end{array} \tag{17}
 $$
 
-## 4.1.3 代码实现
+## 代码实现
 
 我们下面用Python代码来实现一下以上的计算过程：
 
@@ -147,7 +147,7 @@ def calculate_b_2(X,Y,w):
     return b
 ```
 
-## 4.1.4 运算结果
+## 运算结果
 
 用以上几种方法，最后得出的结果都是一致的，可以起到交叉验证的作用：
 
@@ -159,5 +159,7 @@ w3=2.056827, b3=2.965434
 
 ## 代码位置
 
-[ch04, Level1](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch04-SingleVariableLinearRegression/Level1_LeastSquare.py)
+原代码位置：[ch04, Level1](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch04-SingleVariableLinearRegression/Level1_LeastSquare.py)
+
+个人代码：[LeastSquare](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/singleVariableLinearRegression/LeastSquare.py)
 

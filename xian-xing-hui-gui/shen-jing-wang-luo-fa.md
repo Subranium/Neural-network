@@ -214,5 +214,68 @@ def ShowResult(net, dataReader):
 
 ## 代码位置
 
-[ch04, Level3](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch04-SingleVariableLinearRegression/Level2_GradientDescent.py)
+原代码位置：[ch04, Level3](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch04-SingleVariableLinearRegression/Level2_GradientDescent.py)
+
+个人代码：[NeuralNet](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/singleVariableLinearRegression/NeuralNet.py)
+
+## keras实现单变量线性回归
+
+```python
+from keras.layers import Dense
+from keras.models import Sequential
+
+from HelperClass.DataReader_1_0 import *
+
+import matplotlib.pyplot as plt
+
+
+def get_data():
+    sdr = DataReader_1_0("../data/ch04.npz")
+    sdr.ReadData()
+    X,Y = sdr.GetWholeTrainSamples()
+    return X, Y
+
+
+def build_model():
+    model = Sequential()
+    model.add(Dense(1, activation='linear', input_dim=1))
+    model.compile(optimizer='SGD',
+                  loss='mse')
+    return model
+
+
+def plt_data(x, y, model):
+    # draw sample data
+    plt.plot(x, y, "b.")
+    # draw predication data
+    PX = np.linspace(0,1,10)
+    PZ = model.predict(PX)
+    plt.plot(PX, PZ, "r")
+    plt.title("Air Conditioner Power")
+    plt.xlabel("Number of Servers(K)")
+    plt.ylabel("Power of Air Conditioner(KW)")
+    plt.show()
+
+
+if __name__ == '__main__':
+    X, Y = get_data()
+    x = np.array(X)
+    y = np.array(Y)
+    print(x.shape)
+    print(y.shape)
+
+    model = build_model()
+    model.fit(x, y, epochs=1, batch_size=1)
+    w, b = model.layers[0].get_weights()
+    print(w, b)
+    plt_data(x, y, model)
+```
+
+模型输出结果
+
+```python
+w=2.7211757,b=2.360211
+```
+
+![](../.gitbook/assets/image%20%2882%29.png)
 
