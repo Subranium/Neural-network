@@ -38,5 +38,7 @@
 
 * [线性分类](xian-xing-fen-lei/xian-xing-fen-lei.md)
 * [多入单出的单层神经网路-线性二分类](xian-xing-fen-lei/duo-ru-dan-chu-de-dan-ceng-shen-jing-wang-lu-xian-xing-er-fen-lei.md)
+* [二分类函数](xian-xing-fen-lei/er-fen-lei-han-shu.md)
+* [用神经网络实现线性二分类](xian-xing-fen-lei/yong-shen-jing-wang-luo-shi-xian-xian-xing-er-fen-lei.md)
 * [参考文献](can-kao-wen-xian.md)
 
