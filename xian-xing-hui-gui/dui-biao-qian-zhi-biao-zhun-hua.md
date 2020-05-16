@@ -37,7 +37,7 @@ array([[-443.04543906]])
 
 如果我们像对特征值做标准化一样，把标签值也标准化到\[0,1\]之间，是不是有帮助呢？
 
-## 5.6.2 代码实现
+## 代码实现
 
 参照X的标准化方法，对Y的标准化公式如下：
 
@@ -172,5 +172,94 @@ Z_real= [[486.33591769]]
 
 ## **keras实现**
 
-\*\*\*\*
+```python
+from keras.layers import Dense
+from keras.models import Sequential
+from keras.callbacks import EarlyStopping
+
+from sklearn.preprocessing import StandardScaler
+
+from HelperClass.DataReader_1_0 import *
+
+import matplotlib.pyplot as plt
+
+
+def get_data():
+    sdr = DataReader_1_0("../data/ch05.npz")
+    sdr.ReadData()
+    X,Y = sdr.GetWholeTrainSamples()
+    x_mean = np.mean(X)
+    x_std = np.std(X)
+    y_mean = np.mean(Y)
+    y_std = np.std(Y)
+    ss = StandardScaler()
+    # 对训练样本做归一化
+    X = ss.fit_transform(X)
+    # 对训练标签做归一化
+    Y = ss.fit_transform(Y)
+
+    # test data
+    x1 = 15
+    x2 = 93
+    x = np.array([x1, x2]).reshape(1, 2)
+    # 对测试数据做归一化
+    x_new = NormalizePredicateData(x, x_mean, x_std)
+
+    return X, Y, x_new, y_mean, y_std
+
+
+# 手动进行归一化过程
+def NormalizePredicateData(X_raw, x_mean, x_std):
+    X_new = np.zeros(X_raw.shape)
+    n = X_raw.shape[1]
+    for i in range(n):
+        col_i = X_raw[:,i]
+        X_new[:,i] = (col_i - x_mean) / x_std
+    return X_new
+
+
+def build_model():
+    model = Sequential()
+    model.add(Dense(1, activation='linear', input_shape=(2,)))
+    model.compile(optimizer='SGD',
+                  loss='mse')
+    return model
+
+
+# 绘制loss曲线
+def plt_loss(history):
+    loss = history.history['loss']
+    epochs = range(1, len(loss) + 1)
+    plt.plot(epochs, loss, 'b', label='Training loss')
+    plt.title('Training  loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
+
+
+if __name__ == '__main__':
+    X, Y, x_new, y_mean, y_std = get_data()
+    x = np.array(X)
+    y = np.array(Y)
+    print(x.shape)
+    print(y.shape)
+    print(x)
+
+    model = build_model()
+    # patience设置当发现loss没有下降的情况下，经过patience个epoch后停止训练
+    early_stopping = EarlyStopping(monitor='loss', patience=100)
+    history = model.fit(x, y, epochs=200, batch_size=10, callbacks=[early_stopping])
+    w, b = model.layers[0].get_weights()
+    print(w)
+    print(b)
+    plt_loss(history)
+
+    # inference
+    z = model.predict(x_new)
+    print("z=", z)
+    # 将标签还原回真实值
+    Z_true = z * y_std + y_mean
+    print("Z_true=", Z_true)
+```
 
