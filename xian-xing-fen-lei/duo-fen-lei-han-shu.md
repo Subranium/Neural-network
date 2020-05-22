@@ -1,4 +1,4 @@
-# 多分类函数-待完善
+# 多分类函数
 
 此函数对线性多分类和非线性多分类都适用。
 
@@ -8,9 +8,9 @@
 
 ### 为什么叫做Softmax？
 
-假设输入值是：\[3,1,-3\]，如果取max操作会变成：\[1,0,0\]，这符合我们的分类需要。但是有两个不足：
+假设输入值是：\[3, 1, -3\]，如果取max操作会变成：\[1,0,0\]，这符合我们的分类需要。但是有两个不足：
 
-1. 分类结果是\[1，0，0\]，只保留的非0即1的信息，没有各元素之间相差多少的信息，可以理解是“Hard-Max”
+1. 分类结果是\[1, 0, 0\]，只保留的非0即1的信息，没有各元素之间相差多少的信息，可以理解是“Hard-Max”
 2. max操作本身不可导，无法用在反向传播中。
 
 所以Softmax加了个"soft"来模拟max的行为，但同时又保留了相对大小的信息。
@@ -47,7 +47,7 @@ $$
 | MAX计算 | \(1, 0, 0\) |
 | Softmax计算 | \(0.879, 0.119, 0.002\) |
 
-也就是说，在（至少）有三个类别时，通过使用Softmax公式计算它们的输出，比较相对大小后，得出该样本属于第一类，因为第一类的值为0.879，在三者中最大。注意这是对一个样本的计算得出的数值，而不是三个样本，亦即softmax给出了某个样本分别属于三个类别的概率。
+也就是说，在（至少）有三个类别时，通过使用Softmax公式计算它们的输出，比较相对大小后，得出该样本属于第一类，因为第一类的值为0.879，在三者中最大。注意这是对一个样本的计算得出的数值，而不是三个样本，亦即**softmax给出了某个样本分别属于三个类别的概率**。
 
 它有两个特点：
 
@@ -206,77 +206,108 @@ $$
 
 * $$i=j$$时（比如输出分类值a1对z1的求导），求$$a_j$$对$$z_i$$的导数，此时分子上的$$e^{z_j}$$要参与求导。：
 
-$$ \begin{aligned} \frac{\partial{a_j}}{\partial{z_i}} &= \frac{\partial{}}{\partial{z_i}}(e^{z_j}/E) \\ = \frac{\partial{}}{\partial{z_j}}(e^{z_j}/E) \quad (因为z_i==z_i)\\=\frac{e^{z_j}E-e^{z_j}e^{z_j}}{E^2} =\frac{e^{z_j}}{E} - \frac{(e^{z_j})^2}{E^2} \\ = a_j-a^2_j=a_j(1-a_j) \ \end{aligned} \tag{21} $$
+$$
+\begin{aligned}
+\frac{\partial a_{j}}{\partial z_{i}} &=\frac{\partial}{\partial z_{i}}\left(e^{z_{j}} / E\right) \\
+&=\frac{\partial}{\partial z_{j}}\left(e^{z_j}/E\right)\\
+&=\frac{e^{z_j}E-e^{z_j} e^{z_j}}{E^{2}}\left(\text { 因为 } z_{i}=z_{j}\right) \\
+&=\frac{e^{z_j}}{E}-\frac{\left(e^{z_j}\right)^{2}}{E^{2}} \\
+&=a_{j}-a_{j}^{2} \\
+&=a_{j}\left(1-a_{j}\right)
+\end{aligned} \tag{21}
+$$
 
-* $$i \neq j$$时（比如输出分类值a1对z2的求导，j=1, i=2），$$a_j$$对$$z_i$$的导数，分子上的$$z_j与i$$没有关系，求导为0，分母的求和项中$$e^{z_i}$$要参与求导。同样是公式33，因为分子$$e^{z_j}$$对$$e^{z_i}$$求导的结果是0：
+* $$i \neq j$$时（比如输出分类值a1对z2的求导，j=1, i=2），$$a_j$$对$$z_i$$的导数，分子上的$$z_j与i$$没有关系，求导为0，分母的求和项中$$e^{z_i}$$要参与求导。因为分子$$e^{z_j}$$对$$e^{z_i}$$求导的结果是0：
 
-$$ \frac{\partial{a_j}}{\partial{z_i}}=\frac{-(E)'e^{z_j}}{E^2} $$
+$$
+\frac{\partial{a_j}}{\partial{z_i}}=\frac{-(E)'e^{z_j}}{E^2}
+$$
 
 求和公式对$$e^{z_i}$$的导数$$(E)'$$，除了$$e^{z_i}$$项外，其它都是0： 
 
-$$ (E)' = (e^{z_1} + \dots + e^{z_i} + \dots +e^{z_m})'=e^{z_i} $$
+$$
+(E)' = (e^{z_1} + \dots + e^{z_i} + \dots +e^{z_m})'=e^{z_i}
+$$
 
 所以： 
 
-$$ \begin{aligned} \frac{\partial{a_j}}{\partial{z_i}}&=\frac{-(E)'e^{z_j}}{(E)^2}=-\frac{e^{z_j}e^{z_i}}{{(E)^2}} \ &=-\frac{e^{z_j}}{{E}}\frac{e^{z_j}}{{E}}=-a_{i}a_{j} \end{aligned} \tag{22} $$
+$$
+\frac{\partial{a_j}}{\partial{z_i}}=\frac{-(E)'e^{z_j}}{(E)^2}=-\frac{e^{z_j}e^{z_i}}{{(E)^2}}=-\frac{e^{z_j}}{{E}}\frac{e^{z_i}}{{E}}=-a_{i}a_{j} \tag{22}
+$$
 
-1. 结合损失函数的整体反向传播公式
+     2. 结合损失函数的整体反向传播公式
 
-看上图，我们要求Loss值对Z1的偏导数。和以前的Logistic函数不同，那个函数是一个z对应一个a，所以反向关系也是一对一。而在这里，a1的计算是有z1,z2,z3参与的，a2的计算也是有z1,z2,z3参与的，即所有a的计算都与前一层的z有关，所以考虑反向时也会比较复杂。
+我们要求Loss值对Z1的偏导数。和以前的Logistic函数不同，那个函数是一个z对应一个a，所以反向关系也是一对一。而在这里，a1的计算是有z1,z2,z3参与的，a2的计算也是有z1,z2,z3参与的，即所有a的计算都与前一层的z有关，所以考虑反向时也会比较复杂。
 
-先从Loss的公式看，$loss=-\(y\_1lna\_1+y\_2lna\_2+y\_3lna\_3\)$，a1肯定与z1有关，那么a2,a3是否与z1有关呢？
+先从Loss的公式看，$$loss=-(y_1lna_1+y_2lna_2+y_3lna_3)$$，a1肯定与z1有关，那么a2,a3是否与z1有关呢？
 
 再从Softmax函数的形式来看：
 
 无论是a1，a2，a3，都是与z1相关的，而不是一对一的关系，所以，想求Loss对Z1的偏导，必须把Loss-&gt;A1-&gt;Z1， Loss-&gt;A2-&gt;Z1，Loss-&gt;A3-&gt;Z1，这三条路的结果加起来。于是有了如下公式：
 
-$$ \begin{aligned}  
- \frac{\partial{loss}}{\partial{z\_i}} &= \frac{\partial{loss}}{\partial{a\_1}}\frac{\partial{a\_1}}{\partial{z\_i}} + \frac{\partial{loss}}{\partial{a\_2}}\frac{\partial{a\_2}}{\partial{z\_i}} + \frac{\partial{loss}}{\partial{a\_3}}\frac{\partial{a\_3}}{\partial{z\_i}} \ &=\sum\_j \frac{\partial{loss}}{\partial{a\_j}}\frac{\partial{a\_j}}{\partial{z\_i}} \end{aligned} $$
+$$
+\begin{aligned}  \frac{\partial{loss}}{\partial{z_i}} &= \frac{\partial{loss}}{\partial{a_1}}\frac{\partial{a_1}}{\partial{z_i}} + \frac{\partial{loss}}{\partial{a_2}}\frac{\partial{a_2}}{\partial{z_i}} + \frac{\partial{loss}}{\partial{a_3}}\frac{\partial{a_3}}{\partial{z_i}} \ =\sum_j \frac{\partial{loss}}{\partial{a_j}}\frac{\partial{a_j}}{\partial{z_i}} \end{aligned}
+$$
 
-你可以假设上式中$i=1，j=3$，就完全符合我们的假设了，而且不失普遍性。
+你可以假设上式中$$i=1，j=3$$，就完全符合我们的假设了，而且不失普遍性。
 
 前面说过了，因为Softmax涉及到各项求和，A的分类结果和Y的标签值分类是否一致，所以需要分情况讨论：
 
-$$ \frac{\partial{a\_j}}{\partial{z\_i}} = \begin{cases} a\_j\(1-a\_j\), & i = j \ -a\_ia\_j, & i \neq j \ \end{cases} $$
+$$
+\frac{\partial a_{j}}{\partial z_{i}}=\left\{\begin{array}{ll}
+a_{j}\left(1-a_{j}\right) & , i=j \\
+-a_{i} a_{j} & , \quad i \neq j
+\end{array}\right.
+$$
 
-因此，$\frac{\partial{loss}}{\partial{z\_i}}$应该是$i=j和i \neq j$两种情况的和：
+因此，$$\frac{\partial{loss}}{\partial{z_i}}$$应该是$$i=j和i \neq j$$两种情况的和：
 
-* $i = j时，loss通过a\_1对z\_1求导（或者是通过a\_2对z\_2求导）$：
+* $$i = j$$时，$$loss$$通过$$a_1$$对$$z_1$$求导（或者是通过$$a_2$$对$$z_2$$求导）：
 
-$$ \begin{aligned} \frac{\partial{loss}}{\partial{z\_i}} &= \frac{\partial{loss}}{\partial{a\_j}}\frac{\partial{a\_j}}{\partial{z\_i}}=-\frac{y\_j}{a\_j}a\_j\(1-a\_j\) \ &=y\_j\(a\_j-1\)=y\_i\(a\_i-1\) \end{aligned} \tag{23} $$
+$$ \begin{aligned} \frac{\partial{loss}}{\partial{z_i}} &= \frac{\partial{loss}}{\partial{a_j}}\frac{\partial{a_j}}{\partial{z_i}}=-\frac{y_j}{a_j}a_j(1-a_j) \ =y_j(a_j-1)=y_i(a_i-1) \end{aligned} \tag{23} $$
 
-* $i \neq j，loss通过a\_2+a\_3对z\_1求导$：
+* $$i \neq j$$，$$loss$$通过$$a_2+a_3$$对$$z_1$$求导：
 
-$$ \begin{aligned}  
- \frac{\partial{loss}}{\partial{z\_i}} &= \frac{\partial{loss}}{\partial{a\_j}}\frac{\partial{a\_j}}{\partial{z\_i}}=\sum\_j^m\(-\frac{y\_j}{a\_j}\)\(-a\_ja\_i\) \ &=\sum\_j^m\(y\_ja\_i\)=a\_i\sum\_{j \neq i}{y\_j} \end{aligned} \tag{24} $$
+$$ \begin{aligned}  \frac{\partial{loss}}{\partial{z_i}} &= \frac{\partial{loss}}{\partial{a_j}}\frac{\partial{a_j}}{\partial{z_i}}=\sum_j^m(-\frac{y_j}{a_j})(-a_ja_i) \ =\sum_j^m(y_ja_i)=a_i\sum_{j \neq i}{y_j} \end{aligned} \tag{24} $$
 
 把两种情况加起来：
 
-$$ \begin{aligned}  
- \frac{\partial{loss}}{\partial{z\_i}} &= y\_i\(a\_i-1\)+a\_i\sum\_{j \neq i}y\_j \ &=-y\_i+a\_iy\_i+a\_i\sum\_{j \neq i}y\_j \ &=-y\_i+a\_i\(y\_i+\sum\_{j \neq i}y\_j\) \ &=-y\_i + a\_i\*1 \ &=a\_i-y\_i \end{aligned} \tag{25}$$
+$$
+\begin{aligned}
+\frac{\partial loss}{\partial z_{i}} &=y_{i}\left(a_{i}-1\right)+a_{i} \sum_{j \neq i} y_{j} \\
+&=-y_{i}+y_{i} a_{i}+a_{i} \sum_{j \neq i} y_{j} \\
+&=-y_{i}+a_{i}\left(y_{i}+\sum_{j \neq i} y_{j}\right) \\
+&=-y_{i}+a_{i} \times 1 \\
+&=a_{i}-y_{i}
+\end{aligned} \tag{25}
+$$
 
-因为$y\_j$是取值$\[1,0,0\]$或者$\[0,1,0\]$或者$\[0,0,1\]$的，这三者用$\sum$加起来，就是$\[1,1,1\]$，在矩阵乘法运算里乘以$\[1,1,1\]$相当于什么都不做，就等于原值。
+因为$$y_j$$是取值$$[1,0,0]$$或者$$[0,1,0]$$或者$$[0,0,1]$$的，这三者用$$\sum$$加起来，就是$$[1,1,1]$$，在矩阵乘法运算里乘以$$[1,1,1]$$相当于什么都不做，就等于原值。
 
-我们惊奇地发现，最后的反向计算过程就是：$a\_i-y\_i$，假设当前样本的$a\_i=\[0.879, 0.119, 0.002\]$，而$y\_i=\[0, 1, 0\]$，则： $$a\_i - y\_i = \[0.879, 0.119, 0.002\]-\[0,1,0\]=\[0.879,-0.881,0.002\]$$
+我们惊奇地发现，最后的反向计算过程就是：$$a_i-y_i$$，假设当前样本的$$a_i=[0.879, 0.119, 0.002]$$，而$$y_i=[0, 1, 0]$$，则： 
+
+$$
+a_i - y_i = [0.879, 0.119, 0.002]-[0,1,0]=[0.879,-0.881,0.002]
+$$
 
 其含义是，样本预测第一类，但实际是第二类，所以给第一类0.879的惩罚值，给第二类0.881的奖励，给第三类0.002的惩罚，并反向传播给神经网络。
 
-后面对$z=wx+b$的求导，与二分类一样，不再赘述。
+后面对$$z=wx+b$$的求导，与二分类一样，不再赘述。
 
-## 7.1.4 代码实现
+## 代码实现
 
 第一种，直截了当按照公式写：
 
-```text
+```python
 def Softmax1(x):
     e_x = np.exp(x)
     v = np.exp(x) / np.sum(e_x)
     return v
 ```
 
-这个可能会发生的问题是，当x很大时，np.exp\(x\)很容易溢出，因为是指数运算。所以，有了下面这种改进的代码：
+这个可能会发生的问题是，**当x很大时，np.exp\(x\)很容易溢出，因为是指数运算**。所以，有了下面这种改进的代码：
 
-```text
+```python
 def Softmax2(Z):
     shift_Z = Z - np.max(Z)
     exp_Z = np.exp(shift_Z)
@@ -286,7 +317,7 @@ def Softmax2(Z):
 
 测试一下：
 
-```text
+```python
 Z = np.array([3,0,-3])
 print(Softmax1(Z))
 print(Softmax2(Z))
@@ -294,26 +325,36 @@ print(Softmax2(Z))
 
 两个实现方式的结果一致：
 
-```text
+```python
 [0.95033021 0.04731416 0.00235563]
 [0.95033021 0.04731416 0.00235563]
 ```
 
 为什么一样呢？从代码上看差好多啊！我们来证明一下：
 
+### 改进代码证明
+
 假设有3个值a，b，c，并且a在三个数中最大，则b所占的Softmax比重应该这样写：
 
-$$P\(b\)=\frac{e^b}{e^a+e^b+e^c}$$
+$$
+P(b)=\frac{e^b}{e^a+e^b+e^c}
+$$
 
 如果减去最大值变成了a-a，b-a，c-a，则b'所占的Softmax比重应该这样写：
 
-$$ \begin{aligned} P\(b'\) &= \frac{e^{b-a}}{e^{a-a}+e^{b-a}+e^{c-a}} \ &=\frac{e^b/e^a}{e^a/e^a+e^b/e^a+e^c/e^a} \ &= \frac{e^b}{e^a+e^b+e^c} \end{aligned} $$ 所以： $$ P\(b\) == P\(b'\) $$
+$$ \begin{aligned} P(b') &= \frac{e^{b-a}}{e^{a-a}+e^{b-a}+e^{c-a}} \ =\frac{e^b/e^a}{e^a/e^a+e^b/e^a+e^c/e^a} \ = \frac{e^b}{e^a+e^b+e^c} \end{aligned} $$
 
-Softmax2的写法对一个一维的向量或者数组是没问题的，如果遇到Z是个$M \times N$维\(M,N&gt;1\)的矩阵的话，就有问题了，因为np.sum\(exp\_Z\)这个函数，会把MxN矩阵里的所有元素加在一起，得到一个标量值，而不是相关列元素加在一起。
+所以： 
+
+$$
+P(b) == P(b')
+$$
+
+Softmax2的写法对一个一维的向量或者数组是没问题的，如果遇到Z是个$$M \times N$$维\(M,N&gt;1\)的矩阵的话，就有问题了，因为np.sum\(exp\_Z\)这个函数，会把MxN矩阵里的所有元素加在一起，得到一个标量值，而不是相关列元素加在一起。
 
 所以应该这么写：
 
-```text
+```python
 class Softmax(object):
     def forward(self, z):
         shift_z = z - np.max(z, axis=1, keepdims=True)
@@ -322,14 +363,14 @@ class Softmax(object):
         return a
 ```
 
-axis=1这个参数非常重要，因为如果输入Z是单样本的预测值话，如果是分三类，则应该是个3x1的数组，如果：
+**axis=1这个参数非常重要**，因为如果输入Z是单样本的预测值话，如果是分三类，则应该是个3x1的数组，如果：
 
-* $z = \[3, 1, -3\]$
-* $a = \[0.879, 0.119, 0.002\]$
+* $$z = [3, 1, -3]$$
+* $$a = [0.879, 0.119, 0.002]$$
 
 但是，如果是批量训练，假设每次用两个样本，则：
 
-```text
+```python
 if __name__ == '__main__':
     z = np.array([[3,1,-3],[1,-3,3]]).reshape(2,3)
     a = Softmax().forward(z)
@@ -338,7 +379,7 @@ if __name__ == '__main__':
 
 结果：
 
-```text
+```python
 [[0.87887824 0.11894324 0.00217852]
  [0.11894324 0.00217852 0.87887824]]
 ```
@@ -347,7 +388,7 @@ if __name__ == '__main__':
 
 如果s = np.sum\(exp\_z\)，不指定axis=1参数，则：
 
-```text
+```python
 [[0.43943912 0.05947162 0.00108926]
  [0.05947162 0.00108926 0.43943912]]
 ```

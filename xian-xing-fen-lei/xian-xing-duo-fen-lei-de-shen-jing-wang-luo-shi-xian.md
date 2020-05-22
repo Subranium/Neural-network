@@ -111,7 +111,7 @@ class SimpleDataReader(object):
 
 ### 添加分类函数
 
-在Activators.py中，增加Softmax的实现，并添加单元测试。
+在ClassifierFunction\_1\_1.py中，增加Softmax的实现。
 
 ```python
 class Softmax(object):
@@ -233,9 +233,58 @@ r= [2 3 1 1]
 
 ## 代码位置
 
-ch07, Level1
+原代码位置：[ch07, Level1](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch07-LinearMultipleClassification/Level1_MultipleClassification.py)
+
+个人代码：
 
 ## 思考与练习
 
 1. 从4个样本的推理结果来看，分类都是正确的，但是只有第一个样本的结果的0.734的概率值处于绝对领先位置，其它几个分类的概率值优势并不明显，这是为什么？如何让其正确分类的概率值的差距更大？
+
+## keras实现
+
+```python
+import numpy as np
+
+from HelperClass.NeuralNet_1_2 import *
+from HelperClass.DataReader_1_3 import *
+
+from keras.models import Sequential
+from keras.layers import Dense
+
+def load_data(num_category, path):
+    reader = DataReader_1_3(path)
+    reader.ReadData()
+    reader.NormalizeX()
+    reader.ToOneHot(num_category, base=1)
+
+    xt_raw = np.array([5, 1, 7, 6, 5, 6, 2, 7]).reshape(4, 2)
+    x_test = reader.NormalizePredicateData(xt_raw)
+
+    return reader.XTrain, reader.YTrain, x_test
+
+
+def build_model():
+    model = Sequential()
+    model.add(Dense(3, activation='softmax', input_shape=(2,)))
+    model.compile(optimizer='SGD', loss='categorical_crossentropy')
+    return model
+
+if __name__ == '__main__':
+    path = "../data/ch07.npz"
+    x_train, y_train, x_test = load_data(num_category=3, path=path)
+    # print(x_train)
+    # print(y_train)
+
+    model = build_model()
+    model.fit(x_train, y_train, epochs=100, batch_size=10)
+    w, b = model.layers[0].get_weights()
+    print(w)
+    print(b)
+
+    output = model.predict(x_test)
+    r = np.argmax(output, axis=1) + 1
+    print("output=", output)
+    print("r=", r)
+```
 
