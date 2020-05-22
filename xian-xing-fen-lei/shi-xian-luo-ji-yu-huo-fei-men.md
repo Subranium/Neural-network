@@ -227,42 +227,6 @@ True
 
 ![epoch=5000](../.gitbook/assets/image%20%28105%29.png)
 
-如果我们将输入数据修改一下，修改为
-
-```python
-X = np.array([1, 1, 1, 0, 0, 1, 0, 0]).reshape(4, 2)
-```
-
-那么逻辑OR和NOR就需要更多的迭代次数
-
-```python
-reader = LogicDataReader()
-reader.Read_Logic_AND_Data()
-train(reader, "Logic AND operator")
-
-reader = LogicDataReader()
-reader.Read_Logic_OR_Data()
-train(reader, "Logic OR operator")
-```
-
-输出的结果分别为：
-
-```python
-AND
-2266 3 0.0019996388444300725
-W= [[-11.74577473]
- [-11.7458918 ]]
-B= [[5.41370439]]
-```
-
-```python
-OR
-4252 3 0.0019999280800343643
-W= [[-11.76499604]
- [-11.76497315]]
-B= [[17.81587457]]
-```
-
 ## keras实现
 
 ```python
