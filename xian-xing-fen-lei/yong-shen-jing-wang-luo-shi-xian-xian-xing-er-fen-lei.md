@@ -12,7 +12,7 @@
 
 根据前面的猜测，看来我们只需要一个二入一出的神经元就可以搞定。这个网络只有输入层和输出层，由于输入层不算在内，所以是一层网络，见图6-3。
 
-![&#x56FE;6-3 &#x5B8C;&#x6210;&#x4E8C;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#x7684;&#x795E;&#x7ECF;&#x5143;&#x7ED3;&#x6784;](../.gitbook/assets/image%20%2854%29.png)
+![&#x56FE;6-3 &#x5B8C;&#x6210;&#x4E8C;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#x7684;&#x795E;&#x7ECF;&#x5143;&#x7ED3;&#x6784;](../.gitbook/assets/image%20%28107%29.png)
 
 与上一章的网络结构图的区别是，这次我们在神经元输出时使用了分类函数，所以有个A的输出，而不是以往的Z的直接输出。
 
@@ -184,7 +184,7 @@ if __name__ == '__main__':
 
 图6-4所示的损失函数值记录很平稳地下降，说明网络收敛了。
 
-![&#x56FE;6-4 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%2885%29.png)
+![&#x56FE;6-4 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28112%29.png)
 
 最后几行的打印输出：
 
@@ -211,9 +211,82 @@ A= [[0.65791301]
 
 原代码位置：[ch6, Level2](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch06-LinearBinaryClassification/Level2_BinaryClassification.py)
 
-个人代码：
+个人代码：[**BinaryClassification**](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/LinearBinaryClassification/BinaryClassification.py)\*\*\*\*
 
 ## keras实现
 
+```python
+from keras.layers import Dense
+from keras.models import Sequential
+from keras.callbacks import EarlyStopping
 
+from sklearn.preprocessing import StandardScaler
+
+from HelperClass.DataReader_1_1 import *
+
+import matplotlib.pyplot as plt
+
+def get_data():
+    sdr = DataReader_1_1("../data/ch06.npz")
+    sdr.ReadData()
+    X, Y = sdr.GetWholeTrainSamples()
+    ss = StandardScaler()
+    X = ss.fit_transform(X)
+    # Y = ss.fit_transform(Y)
+    return X, Y
+
+
+def build_model():
+    model = Sequential()
+    model.add(Dense(1, activation='sigmoid', input_shape=(2, )))
+    model.compile(optimizer='SGD', loss='binary_crossentropy')
+    return model
+
+
+def plt_loss(history):
+    loss = history.history['loss']
+    epochs = range(1, len(loss) + 1)
+    plt.plot(epochs, loss, 'b', label='Training loss')
+    plt.title('Training  loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
+
+
+if __name__ == '__main__':
+    X, Y = get_data()
+    x = np.array(X)
+    y = np.array(Y)
+    print(x.shape)
+    print(y.shape)
+    print(x)
+    # print(y)
+
+    model = build_model()
+    early_stopping = EarlyStopping(monitor='loss', patience=100)
+    history = model.fit(x, y, epochs=500, batch_size=10, callbacks=[early_stopping])
+    w, b = model.layers[0].get_weights()
+    print(w)
+    print(b)
+    plt_loss(history)
+
+    # inference
+    x_predicate = np.array([0.58, 0.92, 0.62, 0.55, 0.39, 0.29]).reshape(3, 2)
+    a = model.predict(x_predicate)
+    print("A=", a)
+```
+
+输出结果
+
+```python
+W=[[-4.683383 ]
+ [ 1.9734153]]
+B=[0.22875357]
+A= [[0.3380343 ]
+ [0.16944502]
+ [0.26396227]]
+```
+
+![](../.gitbook/assets/image%20%28100%29.png)
 

@@ -24,7 +24,7 @@ $$(0,1)$$
 
 * 函数图像（图6-2）
 
-![&#x56FE;6-2 Logistic&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%285%29.png)
+![&#x56FE;6-2 Logistic&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%2886%29.png)
 
 * 使用方式
 
