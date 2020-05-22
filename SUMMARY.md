@@ -43,5 +43,7 @@
 * [线性二分类原理](xian-xing-fen-lei/xian-xing-er-fen-lei-yuan-li.md)
 * [二分类结果可视化](xian-xing-fen-lei/er-fen-lei-jie-guo-ke-shi-hua.md)
 * [实现逻辑与或非门](xian-xing-fen-lei/shi-xian-luo-ji-yu-huo-fei-men.md)
+* [用双曲正切函数做二分类函数](xian-xing-fen-lei/yong-shuang-qu-zheng-qie-han-shu-zuo-er-fen-lei-han-shu.md)
+* [多入单出的单层神经网路](xian-xing-fen-lei/duo-ru-dan-chu-de-dan-ceng-shen-jing-wang-lu.md)
 * [参考文献](can-kao-wen-xian.md)
 
