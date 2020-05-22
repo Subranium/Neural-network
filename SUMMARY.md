@@ -48,5 +48,6 @@
 * [多分类函数](xian-xing-fen-lei/duo-fen-lei-han-shu.md)
 * [线性多分类的神经网络实现](xian-xing-fen-lei/xian-xing-duo-fen-lei-de-shen-jing-wang-luo-shi-xian.md)
 * [线性多分类原理](xian-xing-fen-lei/xian-xing-duo-fen-lei-yuan-li.md)
+* [多分类结果可视化](xian-xing-fen-lei/duo-fen-lei-jie-guo-ke-shi-hua.md)
 * [参考文献](can-kao-wen-xian.md)
 

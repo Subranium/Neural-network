@@ -34,7 +34,7 @@ $$
 
 用图7-5来形象地说明这个过程。
 
-![&#x56FE;7-5 Softmax&#x5DE5;&#x4F5C;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%28119%29.png)
+![&#x56FE;7-5 Softmax&#x5DE5;&#x4F5C;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%28122%29.png)
 
 当输入的数据$$[z_1,z_2,z_3]$$是$$[3,1,-3]$$时，按照图示过程进行计算，可以得出输出的概率分布是$$[0.879,0.119,0.002]$$。
 
@@ -119,7 +119,7 @@ $$J(w,b) =- \sum_{j=1}^n \sum_{i=1}^m y_{ij} \log a_{ij} \tag{4}$$
 
 如图7-6示意。
 
-![&#x56FE;7-6 Softmax&#x5728;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x4E2D;&#x7684;&#x793A;&#x610F;&#x56FE;](../.gitbook/assets/image%20%2889%29.png)
+![&#x56FE;7-6 Softmax&#x5728;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x4E2D;&#x7684;&#x793A;&#x610F;&#x56FE;](../.gitbook/assets/image%20%2890%29.png)
 
 ## 反向传播
 

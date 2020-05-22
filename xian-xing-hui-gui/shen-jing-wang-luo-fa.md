@@ -278,7 +278,7 @@ if __name__ == '__main__':
 w=2.7211757,b=2.360211
 ```
 
-![](../.gitbook/assets/image%20%28132%29.png)
+![](../.gitbook/assets/image%20%28136%29.png)
 
 当然我们也可以多训练几次，在这里我们使用一下early\_stopping
 
@@ -342,5 +342,5 @@ if __name__ == '__main__':
 w=1.8036981, b=3.095605
 ```
 
-![](../.gitbook/assets/image%20%2898%29.png)
+![](../.gitbook/assets/image%20%28100%29.png)
 
