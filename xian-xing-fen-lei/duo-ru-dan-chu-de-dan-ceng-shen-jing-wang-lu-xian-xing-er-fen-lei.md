@@ -56,7 +56,7 @@
 
 | 线性二分类 | 非线性二分类 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%2892%29.png)  | ![](../.gitbook/assets/image%20%28120%29.png)  |
+| ![](../.gitbook/assets/image%20%2892%29.png)  | ![](../.gitbook/assets/image%20%28121%29.png)  |
 
 我们先学习如何解决线性二分类为标题，在此基础上可以扩展为非线性二分类问题。
 
