@@ -2,7 +2,7 @@
 
 ## 定义神经网络结构
 
-![&#x56FE;7-1](../.gitbook/assets/image%20%28108%29.png)
+![&#x56FE;7-1](../.gitbook/assets/image%20%28110%29.png)
 
 从图7-1来看，似乎在三个颜色区间之间有两个比较明显的分界线，而且是直线，即线性可分的。我们如何通过神经网络精确地找到这两条分界线呢？
 
@@ -14,7 +14,7 @@
 
 这个网络只有输入层和输出层，由于输入层不算在内，所以是一层网络，如图7-7所示。
 
-![&#x56FE;7-7 &#x591A;&#x5165;&#x591A;&#x51FA;&#x5355;&#x5C42;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;](../.gitbook/assets/image%20%28111%29.png)
+![&#x56FE;7-7 &#x591A;&#x5165;&#x591A;&#x51FA;&#x5355;&#x5C42;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;](../.gitbook/assets/image%20%28114%29.png)
 
 与前面的单层网络不同的是，图7-7最右侧的输出层还多出来一个Softmax分类函数，这是多分类任务中的标准配置，可以看作是输出层的激活函数，并不单独成为一层，与二分类中的Logistic函数一样。
 
@@ -206,7 +206,7 @@ if __name__ == '__main__':
 
 从图7-8所示的趋势上来看，损失函数值还有进一步下降的可能，以提高模型精度。有兴趣的读者可以多训练几轮，看看效果。
 
-![&#x56FE;7-8 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28116%29.png)
+![&#x56FE;7-8 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28119%29.png)
 
 下面是打印输出的最后几行：
 
@@ -235,11 +235,7 @@ r= [2 3 1 1]
 
 原代码位置：[ch07, Level1](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch07-LinearMultipleClassification/Level1_MultipleClassification.py)
 
-个人代码：
-
-## 思考与练习
-
-1. 从4个样本的推理结果来看，分类都是正确的，但是只有第一个样本的结果的0.734的概率值处于绝对领先位置，其它几个分类的概率值优势并不明显，这是为什么？如何让其正确分类的概率值的差距更大？
+个人代码：[MultipleClassification](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/MultiVariableLinearClassification/MultipleClassification.py)
 
 ## keras实现
 
