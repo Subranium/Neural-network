@@ -190,7 +190,7 @@ True
 
 | 逻辑门 | 分类结果 | 参数值 |
 | :--- | :--- | :--- |
-| 非 | ![](../.gitbook/assets/image%20%28120%29.png)  | W=-12.468 B=6.031 |
+| 非 | ![](../.gitbook/assets/image%20%28121%29.png)  | W=-12.468 B=6.031 |
 | 与 | ![](../.gitbook/assets/image%20%28101%29.png)  | W1=11.757 W2=11.757 B=-17.804 |
 | 与非 | ![](../.gitbook/assets/image%20%2898%29.png)  | W1=-11.763 W2=-11.763 B=17.812 |
 | 或 | ![](../.gitbook/assets/image%20%2887%29.png)  | W1=11.743 W2=11.743 B=-11.738 |
@@ -215,7 +215,7 @@ True
 
 将max\_epoch调整为5000
 
-![](../.gitbook/assets/image%20%28122%29.png)
+![](../.gitbook/assets/image%20%28123%29.png)
 
     2. 为什么达到相同的精度，逻辑OR和NOR只用2000次左右的epoch，而逻辑AND和NAND却需要4000次以上？
 
