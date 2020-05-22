@@ -1,4 +1,4 @@
-# 多分类函数
+# 多分类函数-待完善
 
 此函数对线性多分类和非线性多分类都适用。
 
@@ -34,7 +34,7 @@ $$
 
 用图7-5来形象地说明这个过程。
 
-![&#x56FE;7-5 Softmax&#x5DE5;&#x4F5C;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%28117%29.png)
+![&#x56FE;7-5 Softmax&#x5DE5;&#x4F5C;&#x8FC7;&#x7A0B;](../.gitbook/assets/image%20%28119%29.png)
 
 当输入的数据$$[z_1,z_2,z_3]$$是$$[3,1,-3]$$时，按照图示过程进行计算，可以得出输出的概率分布是$$[0.879,0.119,0.002]$$。
 
@@ -148,7 +148,7 @@ $$
 $$ loss(w,b)=-(y_1 \ln a_1 + y_2 \ln a_2 + y_3 \ln a_3) \tag{11} $$
 
 $$
-a = b
+\frac{\partial{loss}}{\partial{z_1}}= \frac{\partial{loss}}{\partial{a_1}}\frac{\partial{a_1}}{\partial{z_1}} + \frac{\partial{loss}}{\partial{a_2}}\frac{\partial{a_2}}{\partial{z_1}} + \frac{\partial{loss}}{\partial{a_3}}\frac{\partial{a_3}}{\partial{z_1}}  \tag{12}
 $$
 
 依次求解公式12中的各项：
@@ -193,20 +193,32 @@ $$
 
 由于Softmax涉及到求和，所以有两种情况：
 
-* 求输出项$a\_1$对输入项$z\_1$的导数，此时：$j=1, i=1, i=j$，可以扩展到i, j为任意相等值
-* 求输出项$a\_2或a\_3$对输入项$z\_1$的导数，此时：$j=2或3, i=1, i \neq j$，可以扩展到i, j为任意不等值
+* 求输出项$$a_1$$对输入项$$z_1$$的导数，此时：$$j=1, i=1, i=j$$，可以扩展到i, j为任意相等值
+* 求输出项$$a_2或a_3$$对输入项$$z_1$$的导数，此时：$$j=2或3, i=1, i \neq j$$，可以扩展到i, j为任意不等值
 
-Softmax函数的分子：因为是计算$a\_j$，所以分子是$e^{z\_j}$。
+Softmax函数的分子：因为是计算$$a_j$$，所以分子是$$e^{z_j}$$。
 
-Softmax函数的分母： $$ \sum\limits\_{i=1}^m e^{z\_i} = e^{z\_1} + \dots + e^{z\_j} + \dots +e^{z\_m} =&gt; E $$
+Softmax函数的分母： 
 
-* $i=j$时（比如输出分类值a1对z1的求导），求$a\_j$对$z\_i$的导数，此时分子上的$e^{z\_j}$要参与求导。参考基本数学导数公式33：
+$$
+\sum\limits_{i=1}^m e^{z_i} = e^{z_1} + \dots + e^{z_j} + \dots +e^{z_m} => E
+$$
 
-$$ \begin{aligned} \frac{\partial{a\_j}}{\partial{z\_i}} &= \frac{\partial{}}{\partial{z\_i}}\(e^{z\_j}/E\) \ &= \frac{\partial{}}{\partial{z\_j}}\(e^{z\_j}/E\) \quad \(因为z\_i==z\_i\)\ &=\frac{e^{z\_j}E-e^{z\_j}e^{z\_j}}{E^2} =\frac{e^{z\_j}}{E} - \frac{\(e^{z\_j}\)^2}{E^2} \ &= a\_j-a^2\_j=a\_j\(1-a\_j\) \ \end{aligned} \tag{21} $$
+* $$i=j$$时（比如输出分类值a1对z1的求导），求$$a_j$$对$$z_i$$的导数，此时分子上的$$e^{z_j}$$要参与求导。：
 
-* $i \neq j$时（比如输出分类值a1对z2的求导，j=1, i=2），$a\_j$对$z\_i$的导数，分子上的$z\_j与i$没有关系，求导为0，分母的求和项中$e^{z\_i}$要参与求导。同样是公式33，因为分子$e^{z\_j}$对$e^{z\_i}$求导的结果是0：
+$$ \begin{aligned} \frac{\partial{a_j}}{\partial{z_i}} &= \frac{\partial{}}{\partial{z_i}}(e^{z_j}/E) \\ = \frac{\partial{}}{\partial{z_j}}(e^{z_j}/E) \quad (因为z_i==z_i)\\=\frac{e^{z_j}E-e^{z_j}e^{z_j}}{E^2} =\frac{e^{z_j}}{E} - \frac{(e^{z_j})^2}{E^2} \\ = a_j-a^2_j=a_j(1-a_j) \ \end{aligned} \tag{21} $$
 
-$$ \frac{\partial{a\_j}}{\partial{z\_i}}=\frac{-\(E\)'e^{z\_j}}{E^2} $$ 求和公式对$e^{z\_i}$的导数$\(E\)'$，除了$e^{z\_i}$项外，其它都是0： $$ \(E\)' = \(e^{z\_1} + \dots + e^{z\_i} + \dots +e^{z\_m}\)'=e^{z\_i} $$ 所以： $$ \begin{aligned} \frac{\partial{a\_j}}{\partial{z\_i}}&=\frac{-\(E\)'e^{z\_j}}{\(E\)^2}=-\frac{e^{z\_j}e^{z\_i}}{{\(E\)^2}} \ &=-\frac{e^{z\_j}}{{E}}\frac{e^{z\_j}}{{E}}=-a\_{i}a\_{j} \end{aligned} \tag{22} $$
+* $$i \neq j$$时（比如输出分类值a1对z2的求导，j=1, i=2），$$a_j$$对$$z_i$$的导数，分子上的$$z_j与i$$没有关系，求导为0，分母的求和项中$$e^{z_i}$$要参与求导。同样是公式33，因为分子$$e^{z_j}$$对$$e^{z_i}$$求导的结果是0：
+
+$$ \frac{\partial{a_j}}{\partial{z_i}}=\frac{-(E)'e^{z_j}}{E^2} $$
+
+求和公式对$$e^{z_i}$$的导数$$(E)'$$，除了$$e^{z_i}$$项外，其它都是0： 
+
+$$ (E)' = (e^{z_1} + \dots + e^{z_i} + \dots +e^{z_m})'=e^{z_i} $$
+
+所以： 
+
+$$ \begin{aligned} \frac{\partial{a_j}}{\partial{z_i}}&=\frac{-(E)'e^{z_j}}{(E)^2}=-\frac{e^{z_j}e^{z_i}}{{(E)^2}} \ &=-\frac{e^{z_j}}{{E}}\frac{e^{z_j}}{{E}}=-a_{i}a_{j} \end{aligned} \tag{22} $$
 
 1. 结合损失函数的整体反向传播公式
 

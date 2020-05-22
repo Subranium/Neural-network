@@ -45,6 +45,7 @@
 * [实现逻辑与或非门](xian-xing-fen-lei/shi-xian-luo-ji-yu-huo-fei-men.md)
 * [用双曲正切函数做二分类函数](xian-xing-fen-lei/yong-shuang-qu-zheng-qie-han-shu-zuo-er-fen-lei-han-shu.md)
 * [多入单出的单层神经网路](xian-xing-fen-lei/duo-ru-dan-chu-de-dan-ceng-shen-jing-wang-lu.md)
-* [多分类函数](xian-xing-fen-lei/duo-fen-lei-han-shu.md)
+* [多分类函数-待完善](xian-xing-fen-lei/duo-fen-lei-han-shu.md)
+* [线性多分类的神经网络实现](xian-xing-fen-lei/xian-xing-duo-fen-lei-de-shen-jing-wang-luo-shi-xian.md)
 * [参考文献](can-kao-wen-xian.md)
 
