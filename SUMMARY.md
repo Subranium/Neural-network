@@ -49,5 +49,11 @@
 * [线性多分类的神经网络实现](xian-xing-fen-lei/xian-xing-duo-fen-lei-de-shen-jing-wang-luo-shi-xian.md)
 * [线性多分类原理](xian-xing-fen-lei/xian-xing-duo-fen-lei-yuan-li.md)
 * [多分类结果可视化](xian-xing-fen-lei/duo-fen-lei-jie-guo-ke-shi-hua.md)
+
+## 非线性回归
+
+* [非线性回归](fei-xian-xing-hui-gui/fei-xian-xing-hui-gui.md)
+* [激活函数](fei-xian-xing-hui-gui/ji-huo-han-shu.md)
+* [挤压型激活函数](fei-xian-xing-hui-gui/ji-ya-xing-ji-huo-han-shu.md)
 * [参考文献](can-kao-wen-xian.md)
 

@@ -102,7 +102,22 @@ OneHot的意思，在这一列数据中，只有一个1，其它都是0。1所�
 ```python
 class SimpleDataReader(object):
     def ToOneHot(self, num_category, base=0):
-        ......
+        '''
+        将Y标签转换为onthot编码
+        :param num_category:
+        :param base:
+        :return:
+        '''
+        count = self.YRaw.shape[0]
+        self.num_category = num_category
+        y_new = np.zeros((count, self.num_category))
+        for i in range(count):
+            # 加入当前的标签值为2
+            # 那么第三列就会被设置为1
+            # 如果共有四种类别的话，那么onthot就是[0,0,1,0]
+            n = (int)(self.YRaw[i,0])
+            y_new[i,n-base] = 1
+        self.YTrain = y_new
 ```
 
 ## 代码实现
@@ -111,12 +126,17 @@ class SimpleDataReader(object):
 
 ### 添加分类函数
 
-在ClassifierFunction\_1\_1.py中，增加Softmax的实现。
+在ClassifierFunction\_1\_1.py中，增加Softmax的实现。为什么进行shift\_z操作可以查看[分类函数](duo-fen-lei-han-shu.md#gai-jin-dai-ma-zheng-ming)中有进行讲解
 
 ```python
 class Softmax(object):
     def forward(self, z):
-        ......
+        # 当x很大时，np.exp很容易造成溢出，所以进行以下操作
+        shift_z = z - np.max(z, axis=1, keepdims=True)
+        shift_z = z
+        exp_z = np.exp(shift_z)
+        a = exp_z / np.sum(exp_z, axis=1, keepdims=True)
+        return a
 ```
 
 ### 前向计算
@@ -144,7 +164,11 @@ class NeuralNet(object):
 ```python
 class NeuralNet(object):
     def backwardBatch(self, batch_x, batch_y, batch_a):
-        ......
+        m = batch_x.shape[0]
+        dZ = batch_a - batch_y
+        dB = dZ.sum(axis=0, keepdims=True)/m
+        dW = np.dot(batch_x.T, dZ)/m
+        return dW, dB
 ```
 
 ### 计算损失函数值
@@ -168,7 +192,18 @@ class LossFunction(object):
 
     # for multiple classifier
     def CE3(self, A, Y, count):
-        ......
+        '''
+        交叉熵函数：-y*loga
+        :param A: 神经网络的计算结果，经过softmax函数计算
+        :param Y: 标签值
+        :param count:
+        :return:
+        '''
+        p1 = np.log(A)
+        p2 =  np.multiply(Y, p1)
+        LOSS = np.sum(-p2)
+        loss = LOSS / count
+        return loss
 ```
 
 ### 推理函数
@@ -183,7 +218,7 @@ def inference(net, reader):
     print("r=", r)
 ```
 
-注意在推理之前，先做了归一化，因为原始数据是在\[0,10\]范围的。
+注意在推理之前，**先做了归一化**，因为原始数据是在\[0,10\]范围的。
 
 函数np.argmax的作用是比较output里面的几个数据的值，返回最大的那个数据的行数或者列数，0-based。比如ouput=\(1.02,-3,2.2\)时，会返回2.2，因为2.2最大，所以我们再加1，把返回值变成\[1，2，3\]的其中一个。
 
@@ -194,10 +229,17 @@ np.argmax函数的参数axis=1，是因为有4个样本参与预测，所以需�
 ```python
 if __name__ == '__main__':
     num_category = 3
-    ......
+    reader = DataReader_1_3(file_name)
+    reader.ReadData()
+    reader.NormalizeX()
+    reader.ToOneHot(num_category, base=1)
+
     num_input = 2
-    params = HyperParameters(num_input, num_category, eta=0.1, max_epoch=100, batch_size=10, eps=1e-3, net_type=NetType.MultipleClassifier)
-    ......
+    params = HyperParameters_1_1(num_input, num_category, eta=0.1, max_epoch=500, batch_size=10, eps=1e-3, net_type=NetType.MultipleClassifier)
+    net = NeuralNet_1_2(params)
+    net.train(reader, checkpoint=1)
+
+    inference(net, reader)
 ```
 
 ## 运行结果
@@ -248,6 +290,7 @@ from HelperClass.DataReader_1_3 import *
 from keras.models import Sequential
 from keras.layers import Dense
 
+
 def load_data(num_category, path):
     reader = DataReader_1_3(path)
     reader.ReadData()
@@ -265,6 +308,7 @@ def build_model():
     model.add(Dense(3, activation='softmax', input_shape=(2,)))
     model.compile(optimizer='SGD', loss='categorical_crossentropy')
     return model
+
 
 if __name__ == '__main__':
     path = "../data/ch07.npz"

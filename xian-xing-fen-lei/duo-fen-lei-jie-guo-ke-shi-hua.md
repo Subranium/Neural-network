@@ -11,17 +11,25 @@
 与二分类时同样的问题，如何直观地理解多分类的结果？三分类要复杂一些，我们先把原始数据显示出来。
 
 ```python
-def ShowData(X,Y):
-    for i in range(X.shape[0]):
-        if Y[i,0] == 1:
-            plt.plot(X[i,0], X[i,1], '.', c='r')
-        elif Y[i,0] == 2:
-            plt.plot(X[i,0], X[i,1], 'x', c='g')
-        elif Y[i,0] == 3:
-            plt.plot(X[i,0], X[i,1], '^', c='b')
-        # end if
-    # end for
-    plt.show()
+# 三分类可视化
+def DrawThreeCategoryPoints(X1, X2, Y_onehot, xlabel="x1", ylabel="x2", title=None, show=False, isPredicate=False):
+    colors = ['b', 'r', 'g']
+    shapes = ['s', 'x', 'o']
+    assert(X1.shape[0] == X2.shape[0] == Y_onehot.shape[0])
+    count = X1.shape[0]
+    for i in range(count):
+        j = np.argmax(Y_onehot[i])
+        if isPredicate:
+            plt.scatter(X1[i], X2[i], color=colors[j], marker='^', s=200, zorder=10)
+        else:
+            plt.scatter(X1[i], X2[i], color=colors[j], marker=shapes[j], zorder=10)
+    #end for
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if title is not None:
+        plt.title(title)
+    if show:
+        plt.show()
 ```
 
 会画出图7-1来。
@@ -107,25 +115,23 @@ w23 = (net.W[0,2] - net.W[0,1])/(net.W[1,1] - net.W[1,2])
 
 我们只看蓝色的第1类，当要区分1\|2和1\|3时，神经网络实际是用了两条直线（绿色和红色）同时作为边界。那么它是一对一方式还是一对多方式呢？
 
-图7-14的分割线是我们令$$z_1=z_2, z_2=z_3, z_3=z_1$$三个等式得到的，但实际上神经网络的工作方式不是这样的，它不会单独比较两类，而是会同时比较三类，这个从Softmax会同时输出三个概率值就可以理解。比如，当我们想得到第一类的分割线时，需要同时满足两个条件：
+图7-14的分割线是我们令$$z_1=z_2, z_2=z_3, z_3=z_1$$三个等式得到的，**但实际上神经网络的工作方式不是这样的，它不会单独比较两类，而是会同时比较三类**，这个从Softmax会同时输出三个概率值就可以理解。比如，当我们想得到第一类的分割线时，需要同时满足两个条件：
 
 $$z_1=z_2，且：z_1=z_3 \tag{4}$$
 
 即，同时，找到第一类和第三类的边界。
 
-这就意味着公式4其实是一个线性分段函数，而不是两条直线，即图7-15中红色射线和绿色射线所组成的函数。
+**这就意味着公式4其实是一个线性分段函数，而不是两条直线**，即图7-15中红色射线和绿色射线所组成的函数。
 
 ![&#x56FE;7-15 &#x5206;&#x6BB5;&#x7EBF;&#x6027;&#x7684;&#x5206;&#x5272;&#x4F5C;&#x7528;](../.gitbook/assets/image%20%28109%29.png)
 
 同理，用于分开红色点和其它两类的分割线是蓝色射线和绿色射线，用于分开绿色点和其它两类的分割线是红色射线和蓝色射线。
 
-训练一对多分类器时，是把蓝色样本当作一类，把红色和绿色样本混在一起当作另外一类。训练一对一分类器时，是把绿色样本扔掉，只考虑蓝色样本和红色样本。而我们在此并没有这样做，三类样本是同时参与训练的。所以我们只能说神经网络从结果上看，是一种一对多的方式，至于它的实质，我们在后面的非线性分类时再进一步探讨。
+**训练一对多分类器时，是把蓝色样本当作一类，把红色和绿色样本混在一起当作另外一类**。训练一对一分类器时，是把绿色样本扔掉，只考虑蓝色样本和红色样本。而我们在此并没有这样做，三类样本是同时参与训练的。所以我们只能说神经网络从结果上看，是一种一对多的方式，至于它的实质，我们在后面的非线性分类时再进一步探讨。
 
 ## 代码位置
 
-ch07, Level2
+原代码位置：[ch07, Level2](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch07-LinearMultipleClassification/Level2_ShowMultipleResult.py)
 
-## 思考与练习
-
-1. 使用一对一的方法训练三个二分类器，来解决此问题。
+个人代码：[**ShowMultipleResult**](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/MultiVariableLinearClassification/ShowMultipleResult.py)\*\*\*\*
 
