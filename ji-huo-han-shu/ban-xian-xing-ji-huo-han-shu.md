@@ -27,7 +27,7 @@ $$
 * 输出值域：$$(0,\infty)$$
 * 导数值域：$$[0,1]$$
 
-![&#x56FE;8-6 &#x7EBF;&#x6027;&#x6574;&#x6D41;&#x51FD;&#x6570;ReLU](../.gitbook/assets/image%20%28142%29.png)
+![&#x56FE;8-6 &#x7EBF;&#x6027;&#x6574;&#x6D41;&#x51FD;&#x6570;ReLU](../.gitbook/assets/image%20%28144%29.png)
 
 ### 仿生学原理
 
@@ -84,7 +84,7 @@ $$
 
 函数图像如图8-7所示。
 
-![&#x56FE;8-7 LeakyReLU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28149%29.png)
+![&#x56FE;8-7 LeakyReLU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28155%29.png)
 
 ### 优点
 
@@ -116,7 +116,7 @@ $$
 
 Softplus的函数图像如图8-8所示。
 
-![&#x56FE;8-8 Softplus&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28145%29.png)
+![&#x56FE;8-8 Softplus&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28151%29.png)
 
 ## ELU函数
 
@@ -144,7 +144,7 @@ $$
 
 ELU的函数图像如图8-9所示。
 
-![&#x56FE;8-9 ELU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28143%29.png)
+![&#x56FE;8-9 ELU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28148%29.png)
 
 ## 代码位置
 

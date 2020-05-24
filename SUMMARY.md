@@ -61,5 +61,6 @@
 * [非线性回归](fei-xian-xing-hui-gui/fei-xian-xing-hui-gui.md)
 * [单入单出的双层神经网络](fei-xian-xing-hui-gui/dan-ru-dan-chu-de-shuang-ceng-shen-jing-wang-luo.md)
 * [回归模型评估](fei-xian-xing-hui-gui/hui-gui-mo-xing-ping-gu.md)
+* [用多项式回归法拟合正弦曲线](fei-xian-xing-hui-gui/yong-duo-xiang-shi-hui-gui-fa-ni-he-zheng-xian-qu-xian.md)
 * [参考文献](can-kao-wen-xian.md)
 
