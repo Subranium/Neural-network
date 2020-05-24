@@ -185,38 +185,199 @@ class WeightsBias(object):
 
 随机搜索过程如下：
 
-首先，我们为每个超参 数定义一个边缘分布，例如，Bernoulli分布或范畴分布（分别对应着二元超参数或离散超参数），或者对数尺度上的均匀分布（对应着正实 值超参数）。例如，其中，u\(a,b\)表示区间\(a,b\)上均匀采样的样本。类似地，log\_number\_of\_hidden\_units可以从 u\(log\(50\),log\(2000\)\)上采样。
+首先，我们为每个超参数定义一个边缘分布，例如，Bernoulli分布或范畴分布（分别对应着二元超参数或离散超参数），或者对数尺度上的均匀分布（对应着正实 值超参数）。例如，其中，u\(a,b\)表示区间\(a,b\)上均匀采样的样本。类似地，log\_number\_of\_hidden\_units可以从 u\(log\(50\),log\(2000\)\)上采样。
 
 与网格搜索不同，我们不需要离散化超参数的值。这允许我们在一个更大的集合上进行搜索，而不产生额外的计算代价。实际上，当有几个超参数对性能度量没有显著影响时，随机搜索相比于网格搜索指数级地高效。
 
 Bergstra and Bengio（2012）进行了详细的研究并发现相比于网格搜索，随机搜索能够更快地减小验证集误差（就每个模型运行的试验数而言）。
 
-与网格搜索一样，我们通常会重复运行不同 版本的随机搜索，以基于前一次运行的结果改进下一次搜索。
+与网格搜索一样，我们通常会重复运行不同版本的随机搜索，以基于前一次运行的结果改进下一次搜索。
 
 随机搜索能比网格搜索更快地找到良好超参数的原因是，没有浪费的实验，不像网格搜索有时会对一个超参数的两个不同值（给定其他超参 数值不变）给出相同结果。在网格搜索中，其他超参数将在这两次实验中拥有相同的值，而在随机搜索中，它们通常会具有不同的值。因此，如果这两个值的变化所对应的验证集误差没有明显区别的话，网格搜索没有必要重复两个等价的实验，而随机搜索仍然会对其他超参数进行两次独立的探索。
 
 贝叶斯优化是另外一种比较成熟技术，有兴趣的读者请自行学习。
 
-## 思考与练习
-
-1. 使用下列参数设置，找到批大小和学习率的关系：
-
-   * 隐层神经元：4
-   * 初始化：Xavier
-   * 批大小选择：2，5，10，15
-   * 学习率选择：0.1，0.3，0.5，0.7
-
-   用表格列出结果，从而得到批大小与学习率的最佳组合。
-
 ## 代码位置
 
 原代码位置：[ch09, Level6](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch09-NonLinearRegression/Level6_TuneParams.py)
 
-个人代码：
+个人代码：[TuneParams](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/NonLinearRegression/TuneParams.py)
 
-## scikit-learn实现
+## keras实现
+
+### 网格搜索
 
 ```python
+from HelperClass2.DataReader_2_0 import *
 
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.wrappers.scikit_learn import KerasRegressor
+from keras.optimizers import Adam
+
+from sklearn.model_selection import GridSearchCV
+
+import matplotlib.pyplot as plt
+
+def load_data():
+    train_data_name = "../data/ch08.train.npz"
+    test_data_name = "../data/ch08.test.npz"
+
+    dataReader = DataReader_2_0(train_data_name, test_data_name)
+    dataReader.ReadData()
+    dataReader.GenerateValidationSet()
+
+    x_train, y_train, x_val, y_val = dataReader.XTrain, dataReader.YTrain, dataReader.XDev, dataReader.YDev
+    x_test, y_test = dataReader.XTest, dataReader.YTest
+    return x_train, y_train, x_val, y_val, x_test, y_test
+
+
+def build_model(eta):
+    model = Sequential()
+    model.add(Dense(2, activation='sigmoid', input_shape=(1,)))
+    model.add(Dense(1, activation='linear'))
+    adam = Adam(lr=eta)
+    model.compile(optimizer=adam,
+                  loss='mse')
+    return model
+
+
+def draw_train_history(history):
+    # summarize history for loss
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'validation'], loc='upper left')
+    plt.show()
+
+
+if __name__ == '__main__':
+    x_train, y_train, x_val, y_val, x_test, y_test = load_data()
+
+    seed = 7
+    np.random.seed(seed)
+
+    eta = [0.3, 0.4]
+    batch = [16, 32]
+    epochs = [50]
+
+    model = KerasRegressor(build_fn=build_model)
+
+    param_grid = dict(batch_size=batch, eta=eta, epochs=epochs)
+    # n_jobs代表并行处理，-1代表用所有的处理器
+    grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1)
+    grid_result = grid.fit(x_train, y_train)
+    # summarize results
+    print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+    means = grid_result.cv_results_['mean_test_score']
+    stds = grid_result.cv_results_['std_test_score']
+    params = grid_result.cv_results_['params']
+    for mean, stdev, param in zip(means, stds, params):
+        print("means:%f, std: %f with params: %r" % (mean, stdev, param))
 ```
+
+结果输出：
+
+```python
+Best: -0.026331 using {'batch_size': 16, 'epochs': 50, 'eta': 0.3}
+means:-0.026331, std: 0.003839 with params: {'batch_size': 16, 'epochs': 50, 'eta': 0.3}
+means:-0.035289, std: 0.012850 with params: {'batch_size': 16, 'epochs': 50, 'eta': 0.4}
+means:-0.036412, std: 0.006507 with params: {'batch_size': 32, 'epochs': 50, 'eta': 0.3}
+means:-0.040781, std: 0.016304 with params: {'batch_size': 32, 'epochs': 50, 'eta': 0.4}
+```
+
+### 随机搜索
+
+```python
+from HelperClass2.DataReader_2_0 import *
+
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.wrappers.scikit_learn import KerasRegressor
+from keras.optimizers import Adam
+
+from sklearn.model_selection import RandomizedSearchCV
+
+import matplotlib.pyplot as plt
+
+def load_data():
+    train_data_name = "../data/ch08.train.npz"
+    test_data_name = "../data/ch08.test.npz"
+
+    dataReader = DataReader_2_0(train_data_name, test_data_name)
+    dataReader.ReadData()
+    dataReader.GenerateValidationSet()
+
+    x_train, y_train, x_val, y_val = dataReader.XTrain, dataReader.YTrain, dataReader.XDev, dataReader.YDev
+    x_test, y_test = dataReader.XTest, dataReader.YTest
+    return x_train, y_train, x_val, y_val, x_test, y_test
+
+
+def build_model(eta):
+    model = Sequential()
+    model.add(Dense(2, activation='sigmoid', input_shape=(1,)))
+    model.add(Dense(1, activation='linear'))
+    adam = Adam(lr=eta)
+    model.compile(optimizer=adam,
+                  loss='mse')
+    return model
+
+
+def draw_train_history(history):
+    # summarize history for loss
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'validation'], loc='upper left')
+    plt.show()
+
+
+if __name__ == '__main__':
+    x_train, y_train, x_val, y_val, x_test, y_test = load_data()
+
+    seed = 7
+    np.random.seed(seed)
+
+    eta = [0.3, 0.4]
+    batch = [16, 32]
+    epochs = [50]
+
+    model = KerasRegressor(build_fn=build_model)
+
+    param_grid = dict(batch_size=batch, eta=eta, epochs=epochs)
+    grid = RandomizedSearchCV(estimator=model,
+                              param_distributions=param_grid,
+                              cv=5,
+                              n_jobs=-1)
+    grid_result = grid.fit(x_train, y_train)
+    # summarize results
+    print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+    means = grid_result.cv_results_['mean_test_score']
+    stds = grid_result.cv_results_['std_test_score']
+    params = grid_result.cv_results_['params']
+    for mean, stdev, param in zip(means, stds, params):
+        print("means:%f, std: %f with params: %r" % (mean, stdev, param))
+```
+
+结果输出：
+
+```python
+Best: -0.032629 using {'eta': 0.4, 'epochs': 50, 'batch_size': 16}
+means:-0.034112, std: 0.006160 with params: {'eta': 0.3, 'epochs': 50, 'batch_size': 16}
+means:-0.032629, std: 0.010144 with params: {'eta': 0.4, 'epochs': 50, 'batch_size': 16}
+means:-0.038242, std: 0.013430 with params: {'eta': 0.3, 'epochs': 50, 'batch_size': 32}
+means:-0.047992, std: 0.023675 with params: {'eta': 0.4, 'epochs': 50, 'batch_size': 32}
+```
+
+### 参考：
+
+\[1\] [https://cnbeining.github.io/deep-learning-with-python-cn/3-multi-layer-perceptrons/ch9-use-keras-models-with-scikit-learn-for-general-machine-learning.html](https://cnbeining.github.io/deep-learning-with-python-cn/3-multi-layer-perceptrons/ch9-use-keras-models-with-scikit-learn-for-general-machine-learning.html)
+
+\[2\] [http://yangguang2009.github.io/2017/01/08/deeplearning/grid-search-hyperparameters-for-deep-learning/](http://yangguang2009.github.io/2017/01/08/deeplearning/grid-search-hyperparameters-for-deep-learning/)
+
+\[3\] [https://blog.csdn.net/xiaodongxiexie/article/details/71915259](https://blog.csdn.net/xiaodongxiexie/article/details/71915259)
 
