@@ -8,7 +8,8 @@
 ## 基础知识
 
 * [神经网络的基本工作原理简介](ji-chu-zhi-shi/shen-jing-wang-luo-de-ji-ben-gong-zuo-yuan-li-jian-jie.md)
-* [神经网络中的三个基本概念与数据集](ji-chu-zhi-shi/shen-jing-wang-luo-zhong-de-san-ge-ji-ben-gai-nian.md)
+* [神经网络中的三个基本概念](ji-chu-zhi-shi/shen-jing-wang-luo-zhong-de-san-ge-ji-ben-gai-nian.md)
+* [数据集,交叉验证与留出法](ji-chu-zhi-shi/shu-ju-ji-jiao-cha-yan-zheng-yu-liu-chu-fa.md)
 * [线性反向传播](ji-chu-zhi-shi/xian-xing-fan-xiang-chuan-bo.md)
 * [非线性反向传播](ji-chu-zhi-shi/fei-xian-xing-fan-xiang-chuan-bo.md)
 * [梯度下降](ji-chu-zhi-shi/ti-du-xia-jiang.md)
@@ -62,5 +63,8 @@
 * [单入单出的双层神经网络](fei-xian-xing-hui-gui/dan-ru-dan-chu-de-shuang-ceng-shen-jing-wang-luo.md)
 * [回归模型评估](fei-xian-xing-hui-gui/hui-gui-mo-xing-ping-gu.md)
 * [用多项式回归法拟合正弦曲线](fei-xian-xing-hui-gui/yong-duo-xiang-shi-hui-gui-fa-ni-he-zheng-xian-qu-xian.md)
+* [用多项式回归法拟合复合函数曲线](fei-xian-xing-hui-gui/yong-duo-xiang-shi-hui-gui-fa-ni-he-fu-he-han-shu-qu-xian.md)
+* [双层神经网络实现非线性回归](fei-xian-xing-hui-gui/shuang-ceng-shen-jing-wang-luo-shi-xian-fei-xian-xing-hui-gui.md)
+* [曲线拟合](fei-xian-xing-hui-gui/qu-xian-ni-he.md)
 * [参考文献](can-kao-wen-xian.md)
 

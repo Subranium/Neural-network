@@ -42,7 +42,7 @@ $$z = x_1 w_1 + x_2 w_2 + ... + x_m w_m + b \tag{4}$$
 
 所以，不管是几元几次多项式，我们都可以使用线性回归学到的方法来解决。在用代码具体实现之前，我们先学习一些前人总结的经验。先看一个被经常拿出来讲解的例子，如图9-3所示。
 
-![&#x56FE;9-3 &#x5BF9;&#x6709;&#x566A;&#x97F3;&#x7684;&#x6B63;&#x5F26;&#x66F2;&#x7EBF;&#x7684;&#x62DF;&#x5408;](../.gitbook/assets/image%20%28145%29.png)
+![&#x56FE;9-3 &#x5BF9;&#x6709;&#x566A;&#x97F3;&#x7684;&#x6B63;&#x5F26;&#x66F2;&#x7EBF;&#x7684;&#x62DF;&#x5408;](../.gitbook/assets/image%20%28149%29.png)
 
 一堆散点，看上去像是一条带有很大噪音的正弦曲线，从左上到右下，分别是1次多项式、2次多项式......10次多项式，其中：
 
@@ -117,7 +117,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 拟合结果 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28156%29.png)  | ![](../.gitbook/assets/image%20%28146%29.png)  |
+| ![](../.gitbook/assets/image%20%28178%29.png)  | ![](../.gitbook/assets/image%20%28150%29.png)  |
 
 从表9-4的损失函数曲线上看，没有任何损失值下降的趋势；再看拟合情况，只拟合成了一条直线。这说明二次多项式不能满足要求。以下是最后几行的打印输出：
 
@@ -157,7 +157,7 @@ class DataReaderEx(SimpleDataReader):
 
 | 损失函数值 | 拟合结果 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28147%29.png)  | ![](../.gitbook/assets/image%20%28149%29.png)  |
+| ![](../.gitbook/assets/image%20%28154%29.png)  | ![](../.gitbook/assets/image%20%28161%29.png)  |
 
 表9-5中左侧图显示损失函数值下降得很平稳，说明网络训练效果还不错。拟合的结果也很令人满意，虽然红色线没有严丝合缝地落在蓝色样本点内，但是这完全是因为训练的次数不够多，有兴趣的读者可以修改超参后做进一步的试验。
 
@@ -192,7 +192,7 @@ self.XTrain = np.hstack((self.XTrain, X))
 
 | 损失函数值 | 拟合结果 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28143%29.png)  | ![](../.gitbook/assets/image%20%28141%29.png)  |
+| ![](../.gitbook/assets/image%20%28145%29.png)  | ![](../.gitbook/assets/image%20%28142%29.png)  |
 
 ```python
 ......
@@ -224,5 +224,7 @@ B= [[-0.04688634]]
 
 ## 代码位置
 
-原代码位置：ch09, Level2
+原代码位置：[ch09, Level1](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch09-NonLinearRegression/Level1_Polynomial_Sin.py)
+
+个人代码：
 

@@ -43,7 +43,7 @@ $$
 
 ### 函数图像
 
-![&#x56FE;8-3 Sigmoid&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28150%29.png)
+![&#x56FE;8-3 Sigmoid&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28162%29.png)
 
 ### 优点
 
@@ -134,7 +134,7 @@ $$
 
 图8-4是双曲正切的函数图像。
 
-![&#x56FE;8-4 &#x53CC;&#x66F2;&#x6B63;&#x5207;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28153%29.png)
+![&#x56FE;8-4 &#x53CC;&#x66F2;&#x6B63;&#x5207;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28166%29.png)
 
 ### 优点
 
@@ -150,7 +150,7 @@ $$
 
 图8-5展示了其它S型函数，除了tanh\(x\)以外，其它的基本不怎么使用，目的是告诉大家这类函数有很多，但是常用的只有Sigmoid和Tanh两个。
 
-![&#x56FE;8-5 &#x5176;&#x5B83;S&#x578B;&#x51FD;&#x6570;](../.gitbook/assets/image%20%28154%29.png)
+![&#x56FE;8-5 &#x5176;&#x5B83;S&#x578B;&#x51FD;&#x6570;](../.gitbook/assets/image%20%28167%29.png)
 
 再强调一下本书中的约定：
 
