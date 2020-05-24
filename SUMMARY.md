@@ -50,10 +50,16 @@
 * [线性多分类原理](xian-xing-fen-lei/xian-xing-duo-fen-lei-yuan-li.md)
 * [多分类结果可视化](xian-xing-fen-lei/duo-fen-lei-jie-guo-ke-shi-hua.md)
 
+## 激活函数
+
+* [激活函数](ji-huo-han-shu/ji-huo-han-shu.md)
+* [挤压型激活函数](ji-huo-han-shu/ji-ya-xing-ji-huo-han-shu.md)
+* [半线性激活函数](ji-huo-han-shu/ban-xian-xing-ji-huo-han-shu.md)
+
 ## 非线性回归
 
 * [非线性回归](fei-xian-xing-hui-gui/fei-xian-xing-hui-gui.md)
-* [激活函数](fei-xian-xing-hui-gui/ji-huo-han-shu.md)
-* [挤压型激活函数](fei-xian-xing-hui-gui/ji-ya-xing-ji-huo-han-shu.md)
+* [单入单出的双层神经网络](fei-xian-xing-hui-gui/dan-ru-dan-chu-de-shuang-ceng-shen-jing-wang-luo.md)
+* [回归模型评估](fei-xian-xing-hui-gui/hui-gui-mo-xing-ping-gu.md)
 * [参考文献](can-kao-wen-xian.md)
 
