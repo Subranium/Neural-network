@@ -8,9 +8,9 @@
 
 令n\_hidden=1，并指定模型名称为"sin\_111"，训练过程见图9-10。图9-11为拟合效果图。
 
-![&#x56FE;9-10 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x548C;&#x51C6;&#x786E;&#x7387;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28169%29.png)
+![&#x56FE;9-10 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x548C;&#x51C6;&#x786E;&#x7387;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28174%29.png)
 
-![&#x56FE;9-11 &#x4E00;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%28155%29.png)
+![&#x56FE;9-11 &#x4E00;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%28158%29.png)
 
 从图9-10可以看到，损失值到0.04附近就很难下降了。图9-11中，可以看到只有中间线性部分拟合了，两端的曲线部分没有拟合。
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
 图9-12为损失函数曲线和验证集精度曲线，都比较正常。而2个神经元的网络损失值可以达到0.004，少一个数量级。验证集精度到82%左右，而2个神经元的网络可以达到97%。图9-13为拟合效果图。
 
-![&#x56FE;9-12 &#x4E24;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x548C;&#x51C6;&#x786E;&#x7387;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28171%29.png)
+![&#x56FE;9-12 &#x4E24;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x548C;&#x51C6;&#x786E;&#x7387;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28176%29.png)
 
 ![&#x56FE;9-13 &#x4E24;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%28141%29.png)
 
@@ -69,7 +69,7 @@ testing...
 
 ### 隐层只有两个神经元的情况
 
-![&#x56FE;9-14 &#x4E24;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%28160%29.png)
+![&#x56FE;9-14 &#x4E24;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x62DF;&#x5408;&#x6548;&#x679C;](../.gitbook/assets/image%20%28165%29.png)
 
 图9-14是两个神经元的拟合效果图，拟合情况很不理想，和正弦曲线只用一个神经元的情况类似。观察打印输出的损失值，有波动，久久徘徊在0.003附近不能下降，说明网络能力不够。
 
@@ -131,7 +131,7 @@ testing...
 
 原代码位置：[ch09, Level3](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch09-NonLinearRegression/Level3_NN_Sin.py), [Level4](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch09-NonLinearRegression/Level4_NN_Complex.py)
 
-个人代码：
+个人代码：[NN\_Sin](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/NonLinearRegression/NN_Sin.py), [NN\_Complex](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/NonLinearRegression/NN_Complex.py)
 
 ## keras实现
 
@@ -212,7 +212,7 @@ if __name__ == '__main__':
 
 模型训练过程中的损失
 
-![](../.gitbook/assets/image%20%28179%29.png)
+![](../.gitbook/assets/image%20%28187%29.png)
 
 ### 拟合复合函数曲线
 

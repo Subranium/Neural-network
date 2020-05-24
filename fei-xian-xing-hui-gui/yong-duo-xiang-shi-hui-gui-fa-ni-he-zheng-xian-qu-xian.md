@@ -117,7 +117,7 @@ if __name__ == '__main__':
 
 | 损失函数值 | 拟合结果 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28178%29.png)  | ![](../.gitbook/assets/image%20%28150%29.png)  |
+| ![](../.gitbook/assets/image%20%28185%29.png)  | ![](../.gitbook/assets/image%20%28151%29.png)  |
 
 从表9-4的损失函数曲线上看，没有任何损失值下降的趋势；再看拟合情况，只拟合成了一条直线。这说明二次多项式不能满足要求。以下是最后几行的打印输出：
 
@@ -157,7 +157,7 @@ class DataReaderEx(SimpleDataReader):
 
 | 损失函数值 | 拟合结果 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28154%29.png)  | ![](../.gitbook/assets/image%20%28161%29.png)  |
+| ![](../.gitbook/assets/image%20%28155%29.png)  | ![](../.gitbook/assets/image%20%28166%29.png)  |
 
 表9-5中左侧图显示损失函数值下降得很平稳，说明网络训练效果还不错。拟合的结果也很令人满意，虽然红色线没有严丝合缝地落在蓝色样本点内，但是这完全是因为训练的次数不够多，有兴趣的读者可以修改超参后做进一步的试验。
 

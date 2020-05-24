@@ -12,7 +12,7 @@ $$z=x_1 w_1 + x_2 w_2 + x_3 w_3 +b \tag{1}$$
 
 $$a = \sigma(z) \tag{2}$$
 
-![&#x56FE;8-1 &#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x5728;&#x795E;&#x7ECF;&#x5143;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;](../.gitbook/assets/image%20%28183%29.png)
+![&#x56FE;8-1 &#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x5728;&#x795E;&#x7ECF;&#x5143;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;](../.gitbook/assets/image%20%28193%29.png)
 
 激活函数也就是$$a=\sigma(z)$$这一步了，他有什么作用呢？
 

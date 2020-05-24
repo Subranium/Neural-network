@@ -84,7 +84,7 @@ $$
 
 函数图像如图8-7所示。
 
-![&#x56FE;8-7 LeakyReLU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28168%29.png)
+![&#x56FE;8-7 LeakyReLU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28173%29.png)
 
 ### 优点
 
@@ -116,7 +116,7 @@ $$
 
 Softplus的函数图像如图8-8所示。
 
-![&#x56FE;8-8 Softplus&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28163%29.png)
+![&#x56FE;8-8 Softplus&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28168%29.png)
 
 ## ELU函数
 
@@ -144,7 +144,7 @@ $$
 
 ELU的函数图像如图8-9所示。
 
-![&#x56FE;8-9 ELU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28158%29.png)
+![&#x56FE;8-9 ELU&#x7684;&#x51FD;&#x6570;&#x56FE;&#x50CF;](../.gitbook/assets/image%20%28162%29.png)
 
 ## 代码位置
 

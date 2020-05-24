@@ -66,5 +66,7 @@
 * [用多项式回归法拟合复合函数曲线](fei-xian-xing-hui-gui/yong-duo-xiang-shi-hui-gui-fa-ni-he-fu-he-han-shu-qu-xian.md)
 * [双层神经网络实现非线性回归](fei-xian-xing-hui-gui/shuang-ceng-shen-jing-wang-luo-shi-xian-fei-xian-xing-hui-gui.md)
 * [曲线拟合](fei-xian-xing-hui-gui/qu-xian-ni-he.md)
+* [非线性回归的工作原理](fei-xian-xing-hui-gui/fei-xian-xing-hui-gui-de-gong-zuo-yuan-li.md)
+* [超参数优化的初步认识](fei-xian-xing-hui-gui/chao-can-shu-you-hua-de-chu-bu-ren-shi.md)
 * [参考文献](can-kao-wen-xian.md)
 
