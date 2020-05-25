@@ -373,7 +373,7 @@ means:-0.038242, std: 0.013430 with params: {'eta': 0.3, 'epochs': 50, 'batch_si
 means:-0.047992, std: 0.023675 with params: {'eta': 0.4, 'epochs': 50, 'batch_size': 32}
 ```
 
-### 参考：
+### 参考
 
 \[1\] [https://cnbeining.github.io/deep-learning-with-python-cn/3-multi-layer-perceptrons/ch9-use-keras-models-with-scikit-learn-for-general-machine-learning.html](https://cnbeining.github.io/deep-learning-with-python-cn/3-multi-layer-perceptrons/ch9-use-keras-models-with-scikit-learn-for-general-machine-learning.html)
 

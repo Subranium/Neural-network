@@ -17,6 +17,7 @@
 * [均方差函数](ji-chu-zhi-shi/jun-fang-cha-han-shu.md)
 * [交叉熵损失函数](ji-chu-zhi-shi/jiao-cha-shang-sun-shi-han-shu.md)
 * [回归常用评价指标](ji-chu-zhi-shi/hui-gui-chang-yong-ping-jia-zhi-biao.md)
+* [分类常用评价指标](ji-chu-zhi-shi/fen-lei-chang-yong-ping-jia-zhi-biao.md)
 
 ## 线性回归
 
@@ -68,5 +69,10 @@
 * [曲线拟合](fei-xian-xing-hui-gui/qu-xian-ni-he.md)
 * [非线性回归的工作原理](fei-xian-xing-hui-gui/fei-xian-xing-hui-gui-de-gong-zuo-yuan-li.md)
 * [超参数优化的初步认识](fei-xian-xing-hui-gui/chao-can-shu-you-hua-de-chu-bu-ren-shi.md)
+
+## 非线性分类
+
+* [非线性分类](fei-xian-xing-fen-lei/fei-xian-xing-fen-lei.md)
+* [多入单出的双层神经网络](fei-xian-xing-fen-lei/duo-ru-dan-chu-de-shuang-ceng-shen-jing-wang-luo.md)
 * [参考文献](can-kao-wen-xian.md)
 
