@@ -78,5 +78,7 @@
 * [非线性二分类实现](fei-xian-xing-fen-lei/fei-xian-xing-er-fen-lei-shi-xian.md)
 * [实现逻辑异或门](fei-xian-xing-fen-lei/shi-xian-luo-ji-yi-huo-men.md)
 * [逻辑异或门的工作原理](fei-xian-xing-fen-lei/luo-ji-yi-huo-men-de-gong-zuo-yuan-li.md)
+* [实现双弧形二分类](fei-xian-xing-fen-lei/shi-xian-shuang-hu-xing-er-fen-lei.md)
+* [双弧形二分类的工作原理](fei-xian-xing-fen-lei/shuang-hu-xing-er-fen-lei-de-gong-zuo-yuan-li.md)
 * [参考文献](can-kao-wen-xian.md)
 

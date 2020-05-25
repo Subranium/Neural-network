@@ -43,7 +43,7 @@ def DrawSamplePoints(x1, x2, y, title, xlabel, ylabel, show=True):
 
 由此我们会得到样本如图10-11所示。
 
-![&#x56FE;10-11 &#x5F02;&#x6216;&#x6837;&#x672C;&#x6570;&#x636E;](../.gitbook/assets/image%20%28240%29.png)
+![&#x56FE;10-11 &#x5F02;&#x6216;&#x6837;&#x672C;&#x6570;&#x636E;](../.gitbook/assets/image%20%28252%29.png)
 
 异或问题的四个点分布在\[0,1\]空间的四个角上，红色点是正类，蓝色点是负类。
 
@@ -83,9 +83,9 @@ def ShowProcess2D(net, dataReader):
 
 |  |  |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28229%29.png)  | ![](../.gitbook/assets/image%20%28205%29.png)  |
+| ![](../.gitbook/assets/image%20%28238%29.png)  | ![](../.gitbook/assets/image%20%28205%29.png)  |
 | 原始样本 | Z1是第一层网络线性计算结果 |
-| ![](../.gitbook/assets/image%20%28210%29.png)  | ![](../.gitbook/assets/image%20%28232%29.png)  |
+| ![](../.gitbook/assets/image%20%28211%29.png)  | ![](../.gitbook/assets/image%20%28243%29.png)  |
 | A1是Z1的激活函数计算结果 | Z2是第二层线性计算结果，A2是二分类结果 |
 
 * Z1：通过线性变换，把原始数据红色点移动到两个对角上，把蓝色点向中心移动，接近重合。图中的蓝色点看上去好像是一个点，实际上是两个点重合在了一起，可以通过在原画板上放大的方式来看细节
@@ -147,7 +147,7 @@ def ShowResult2D(net, dr, title):
 
 在上面的代码中，横向和竖向各取了50个点，形成一个50x50的网格，然后依次推理，得到output值后染色。由于一共要计算2500次，所以花费的时间稍长，我们打印"please wait for a while..."让程序跑一会儿。最后得到图10-12。
 
-![&#x56FE;10-12 &#x5206;&#x7C7B;&#x7ED3;&#x679C;&#x7684;&#x5206;&#x5272;&#x56FE;](../.gitbook/assets/image%20%28221%29.png)
+![&#x56FE;10-12 &#x5206;&#x7C7B;&#x7ED3;&#x679C;&#x7684;&#x5206;&#x5272;&#x56FE;](../.gitbook/assets/image%20%28226%29.png)
 
 第一次看到这张图是不是很激动！从此我们不再靠画线过日子了，而是上升到了染色的层次！请忽略图中的锯齿，因为我们取了50x50的网格，所以会有马赛克，如果取更密集的网格点，会缓解这个问题，但是计算速度要慢很多倍。
 
@@ -165,7 +165,7 @@ def ShowResult2D(net, dr, title):
 
 | 正向 | 侧向 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28209%29.png)  | ![](../.gitbook/assets/image%20%28227%29.png)  |
+| ![](../.gitbook/assets/image%20%28209%29.png)  | ![](../.gitbook/assets/image%20%28236%29.png)  |
 
 那么这个异或问题的解是否可能是个立体空间呢？有了这个更激动人心的想法，我们立刻写代码：
 
@@ -214,7 +214,7 @@ def ShowResult3D(net, dr):
 
 | 斜侧视角 | 顶视角 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28218%29.png)  | ![](../.gitbook/assets/image%20%28228%29.png)  |
+| ![](../.gitbook/assets/image%20%28222%29.png)  | ![](../.gitbook/assets/image%20%28237%29.png)  |
 
 这下子我们立刻就明白了神经网络都做了些什么事情：它通过样本点，推算出了平面上每个坐标点的分类结果概率，形成空间曲面，然后拦腰一刀（一个切面），这样神经网络就可以在Z=0.5出画一个平面，完美地分开对角顶点。如果看顶视图，与我们在前面生成的2D区域染色图极为相似，它的红色区域的概率值接近于1，蓝色区域的概率值接近于0，在红蓝之间的颜色，代表了从0到1的渐变值。
 
@@ -234,7 +234,7 @@ def ShowResultContour(net, dr):
 
 在二维平面上，可以通过plt.contourf\(\)函数画出着色的等高线图，Z作为等高线高度，可以得到图10-13。
 
-![&#x56FE;10-13 &#x5206;&#x7C7B;&#x7ED3;&#x679C;&#x7684;&#x7B49;&#x9AD8;&#x7EBF;&#x56FE;](../.gitbook/assets/image%20%28220%29.png)
+![&#x56FE;10-13 &#x5206;&#x7C7B;&#x7ED3;&#x679C;&#x7684;&#x7B49;&#x9AD8;&#x7EBF;&#x56FE;](../.gitbook/assets/image%20%28225%29.png)
 
 2.5D图通过颜色来表示不同区域的概率值，可以看到红色区和蓝色区分别是概率接近于0和1的区域，对应着两类样本点。我们后面将会使用这种方式继续研究分类问题。
 
@@ -250,15 +250,15 @@ def ShowResultContour(net, dr):
 
 | 迭代次数 | Z1的演变 | A1的演变 |
 | :--- | :--- | :--- |
-| 500次 | ![](../.gitbook/assets/image%20%28206%29.png)  | ![](../.gitbook/assets/image%20%28215%29.png)  |
-| 2000次 | ![](../.gitbook/assets/image%20%28244%29.png)  | ![](../.gitbook/assets/image%20%28225%29.png)  |
-| 6000次 | ![](../.gitbook/assets/image%20%28222%29.png)  | ![](../.gitbook/assets/image%20%28234%29.png)  |
+| 500次 | ![](../.gitbook/assets/image%20%28206%29.png)  | ![](../.gitbook/assets/image%20%28218%29.png)  |
+| 2000次 | ![](../.gitbook/assets/image%20%28260%29.png)  | ![](../.gitbook/assets/image%20%28233%29.png)  |
+| 6000次 | ![](../.gitbook/assets/image%20%28228%29.png)  | ![](../.gitbook/assets/image%20%28246%29.png)  |
 
 从上图Z1演变过程看，神经网络试图使得两个红色的点重合，而两个蓝色的点距离越远越好，但是中心对称的。
 
 从A1的演变过程看，和Z1差不多，但最后的目的是使得红色点处于\[0,1\]空间两个顶点（和原始数据一样的位置），蓝色点重合于一个角落。从A1的演变过程最后一张图来看，两个红色点已经被挤压到了一起，所以完全可以有一根分割线把二者分开，如图10-14所示。
 
-![&#x56FE;10-14 &#x7ECF;&#x8FC7;&#x7A7A;&#x95F4;&#x53D8;&#x6362;&#x540E;&#x7684;&#x4E24;&#x7C7B;&#x6837;&#x672C;&#x6570;&#x636E;](../.gitbook/assets/image%20%28224%29.png)
+![&#x56FE;10-14 &#x7ECF;&#x8FC7;&#x7A7A;&#x95F4;&#x53D8;&#x6362;&#x540E;&#x7684;&#x4E24;&#x7C7B;&#x6837;&#x672C;&#x6570;&#x636E;](../.gitbook/assets/image%20%28232%29.png)
 
 也就是说到了这一步，神经网络已经不需要做升维演算了，在二维平面上就可以解决分类问题了。从笔者个人的观点出发，更愿意相信这才是神经网络的工作原理。
 
@@ -268,9 +268,9 @@ def ShowResultContour(net, dr):
 
 | 迭代次数 | 分类函数值的演变 | 分类结果的演变 |
 | :--- | :--- | :--- |
-| 500次 | ![](../.gitbook/assets/image%20%28224%29.png)  | ![](../.gitbook/assets/image%20%28236%29.png)  |
-| 2000次 | ![](../.gitbook/assets/image%20%28231%29.png)  | ![](../.gitbook/assets/image%20%28243%29.png)  |
-| 6000次 | ![](../.gitbook/assets/image%20%28212%29.png)  | ![](../.gitbook/assets/image%20%28241%29.png)  |
+| 500次 | ![](../.gitbook/assets/image%20%28232%29.png)  | ![](../.gitbook/assets/image%20%28248%29.png)  |
+| 2000次 | ![](../.gitbook/assets/image%20%28242%29.png)  | ![](../.gitbook/assets/image%20%28255%29.png)  |
+| 6000次 | ![](../.gitbook/assets/image%20%28213%29.png)  | ![](../.gitbook/assets/image%20%28253%29.png)  |
 
 从分类函数情况看，开始时完全分不开两类点，随着学习过程的加深，两类点逐步地向两端移动，直到最后尽可能地相距很远。从分类结果的2.5D图上，可以看出这个方形区域内的每个点的概率变化，由于样本点的对称分布，最后形成了带状的概率分布图。
 
@@ -282,11 +282,11 @@ def ShowResultContour(net, dr):
 
 |  |  |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28200%29.png)  | ![](../.gitbook/assets/image%20%28211%29.png)  |
+| ![](../.gitbook/assets/image%20%28200%29.png)  | ![](../.gitbook/assets/image%20%28212%29.png)  |
 | 1个神经元，无法完成分类任务 | 2个神经元，迭代6200次到达精度要求 |
-| ![](../.gitbook/assets/image%20%28216%29.png)  | ![](../.gitbook/assets/image%20%28223%29.png)  |
+| ![](../.gitbook/assets/image%20%28220%29.png)  | ![](../.gitbook/assets/image%20%28230%29.png)  |
 | 3个神经元，迭代4900次到达精度要求 | 4个神经元，迭代4300次到达精度要求 |
-| ![](../.gitbook/assets/image%20%28217%29.png)  | ![](../.gitbook/assets/image%20%28239%29.png)  |
+| ![](../.gitbook/assets/image%20%28221%29.png)  | ![](../.gitbook/assets/image%20%28251%29.png)  |
 | 8个神经元，迭代4400次到达精度要求 | 16个神经元，迭代4500次到达精度要求 |
 
 以上各情况的迭代次数是在Xavier初始化的情况下测试一次得到的数值，并不意味着神经元越多越好，合适的数量才好。总结如下：
@@ -299,5 +299,7 @@ def ShowResultContour(net, dr):
 
 ## 代码位置
 
-ch10, Level2
+原代码位置：[ch10, Level2](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch10-NonLinearBinaryClassification/Level2_XorGateHiddenUnits.py)
+
+个人代码：[**XorGateHow**](https://github.com/Knowledge-Precipitation-Tribe/Neural-network/blob/master/NonLinearBinaryClassification/XorGateHow.py)\*\*\*\*
 
