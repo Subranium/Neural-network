@@ -14,7 +14,7 @@
 |  | 二分类 | 多分类 |
 | :--- | :--- | :--- |
 | 线性 | ![](../.gitbook/assets/image%20%28208%29.png)  | ![](../.gitbook/assets/image%20%28197%29.png)  |
-| 非线性 | ![](../.gitbook/assets/image%20%28212%29.png)  | ![](../.gitbook/assets/image%20%28203%29.png)  |
+| 非线性 | ![](../.gitbook/assets/image%20%28235%29.png)  | ![](../.gitbook/assets/image%20%28203%29.png)  |
 
 在第三步中我们学习过线性分类，如果用于此处的话，我们可能会得到表10-3所示的绿色分割线。
 
@@ -22,7 +22,7 @@
 
 | XOR问题 | 弧形问题 |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28215%29.png)  | ![](../.gitbook/assets/image%20%28207%29.png)  |
+| ![](../.gitbook/assets/image%20%28242%29.png)  | ![](../.gitbook/assets/image%20%28207%29.png)  |
 | 图中两根直线中的任何一根，都不可能把蓝色点分到一侧，同时红色点在另一侧 | 对于线性技术来说，它已经尽力了，使得两类样本尽可能地分布在直线的两侧 |
 
 ## 简单证明异或问题的不可能性
@@ -44,7 +44,7 @@
 
 | 神经元 | 分类函数Logistic |
 | :--- | :--- |
-| ![](../.gitbook/assets/image%20%28213%29.png)  | ![](../.gitbook/assets/image%20%28201%29.png)  |
+| ![](../.gitbook/assets/image%20%28237%29.png)  | ![](../.gitbook/assets/image%20%28201%29.png)  |
 
 前向计算公式：
 
