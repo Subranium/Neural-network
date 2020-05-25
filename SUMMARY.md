@@ -76,5 +76,6 @@
 * [多入单出的双层神经网络](fei-xian-xing-fen-lei/duo-ru-dan-chu-de-shuang-ceng-shen-jing-wang-luo.md)
 * [为什么必须用双层神经网络](fei-xian-xing-fen-lei/wei-shen-me-bi-xu-yong-shuang-ceng-shen-jing-wang-luo.md)
 * [非线性二分类实现](fei-xian-xing-fen-lei/fei-xian-xing-er-fen-lei-shi-xian.md)
+* [实现逻辑异或门](fei-xian-xing-fen-lei/shi-xian-luo-ji-yi-huo-men.md)
 * [参考文献](can-kao-wen-xian.md)
 
