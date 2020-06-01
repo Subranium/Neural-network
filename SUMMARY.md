@@ -10,14 +10,17 @@
 * [神经网络的基本工作原理简介](ji-chu-zhi-shi/shen-jing-wang-luo-de-ji-ben-gong-zuo-yuan-li-jian-jie.md)
 * [神经网络中的三个基本概念](ji-chu-zhi-shi/shen-jing-wang-luo-zhong-de-san-ge-ji-ben-gai-nian.md)
 * [数据集,交叉验证与留出法](ji-chu-zhi-shi/shu-ju-ji-jiao-cha-yan-zheng-yu-liu-chu-fa.md)
+* [分类样本不平衡问题](ji-chu-zhi-shi/fen-lei-yang-ben-bu-ping-heng-wen-ti.md)
 * [线性反向传播](ji-chu-zhi-shi/xian-xing-fan-xiang-chuan-bo.md)
 * [非线性反向传播](ji-chu-zhi-shi/fei-xian-xing-fan-xiang-chuan-bo.md)
 * [梯度下降](ji-chu-zhi-shi/ti-du-xia-jiang.md)
+* [梯度检查](ji-chu-zhi-shi/ti-du-jian-cha.md)
 * [损失函数](ji-chu-zhi-shi/sun-shi-han-shu.md)
 * [均方差函数](ji-chu-zhi-shi/jun-fang-cha-han-shu.md)
 * [交叉熵损失函数](ji-chu-zhi-shi/jiao-cha-shang-sun-shi-han-shu.md)
 * [回归常用评价指标](ji-chu-zhi-shi/hui-gui-chang-yong-ping-jia-zhi-biao.md)
 * [分类常用评价指标](ji-chu-zhi-shi/fen-lei-chang-yong-ping-jia-zhi-biao.md)
+* [学习率与批大小](ji-chu-zhi-shi/xue-xi-lv-yu-pi-da-xiao.md)
 
 ## 线性回归
 
@@ -80,5 +83,10 @@
 * [逻辑异或门的工作原理](fei-xian-xing-fen-lei/luo-ji-yi-huo-men-de-gong-zuo-yuan-li.md)
 * [实现双弧形二分类](fei-xian-xing-fen-lei/shi-xian-shuang-hu-xing-er-fen-lei.md)
 * [双弧形二分类的工作原理](fei-xian-xing-fen-lei/shuang-hu-xing-er-fen-lei-de-gong-zuo-yuan-li.md)
+* [多入多出的双层神经网络](fei-xian-xing-fen-lei/duo-ru-duo-chu-de-shuang-ceng-shen-jing-wang-luo.md)
+* [非线性多分类](fei-xian-xing-fen-lei/fei-xian-xing-duo-fen-lei.md)
+* [非线性多分类的工作原理](fei-xian-xing-fen-lei/fei-xian-xing-duo-fen-lei-de-gong-zuo-yuan-li.md)
+* [多入多出的三层神经网络](fei-xian-xing-fen-lei/duo-ru-duo-chu-de-san-ceng-shen-jing-wang-luo.md)
+* [三层神经网络的实现](fei-xian-xing-fen-lei/san-ceng-shen-jing-wang-luo-de-shi-xian.md)
 * [参考文献](can-kao-wen-xian.md)
 

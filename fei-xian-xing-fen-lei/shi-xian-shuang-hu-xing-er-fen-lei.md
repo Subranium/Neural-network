@@ -148,7 +148,7 @@ weights:  [array([[-0.06496473,  0.02829591],
        [ 4.9798098]], dtype=float32), array([0.25002602], dtype=float32)]
 ```
 
-训练损失以及精确度曲线
+训练损失以及准确率曲线
 
 ![](../.gitbook/assets/image%20%28227%29.png)
 
