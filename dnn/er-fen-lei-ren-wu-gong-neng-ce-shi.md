@@ -50,7 +50,7 @@ def model(dataReader):
 
 ## 运行结果
 
-![&#x56FE;14-8 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x548C;&#x51C6;&#x786E;&#x7387;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28314%29.png)
+![&#x56FE;14-8 &#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x635F;&#x5931;&#x51FD;&#x6570;&#x503C;&#x548C;&#x51C6;&#x786E;&#x7387;&#x7684;&#x53D8;&#x5316;](../.gitbook/assets/image%20%28320%29.png)
 
 图14-8是训练记录，再看下面的打印输出结果：
 
@@ -162,5 +162,5 @@ weights:  [array([[-0.40774214, -0.3335594 ,  0.46907774],
 
 模型损失以及准确率曲线
 
-![](../.gitbook/assets/image%20%28313%29.png)
+![](../.gitbook/assets/image%20%28319%29.png)
 
