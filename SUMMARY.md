@@ -88,5 +88,12 @@
 * [非线性多分类的工作原理](fei-xian-xing-fen-lei/fei-xian-xing-duo-fen-lei-de-gong-zuo-yuan-li.md)
 * [多入多出的三层神经网络](fei-xian-xing-fen-lei/duo-ru-duo-chu-de-san-ceng-shen-jing-wang-luo.md)
 * [三层神经网络的实现](fei-xian-xing-fen-lei/san-ceng-shen-jing-wang-luo-de-shi-xian.md)
+
+## DNN
+
+* [深度神经网络](dnn/shen-du-shen-jing-wang-luo.md)
+* [搭建深度神经网络框架](dnn/da-jian-shen-du-shen-jing-wang-luo-kuang-jia.md)
+* [回归任务功能测试](dnn/hui-gui-ren-wu-gong-neng-ce-shi.md)
+* [回归任务 - 房价预测](dnn/hui-gui-ren-wu-fang-jia-yu-ce.md)
 * [参考文献](can-kao-wen-xian.md)
 
