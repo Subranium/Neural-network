@@ -95,5 +95,7 @@
 * [搭建深度神经网络框架](dnn/da-jian-shen-du-shen-jing-wang-luo-kuang-jia.md)
 * [回归任务功能测试](dnn/hui-gui-ren-wu-gong-neng-ce-shi.md)
 * [回归任务 - 房价预测](dnn/hui-gui-ren-wu-fang-jia-yu-ce.md)
+* [二分类任务功能测试](dnn/er-fen-lei-ren-wu-gong-neng-ce-shi.md)
+* [二分类任务真实案例](dnn/er-fen-lei-ren-wu-zhen-shi-an-li.md)
 * [参考文献](can-kao-wen-xian.md)
 
