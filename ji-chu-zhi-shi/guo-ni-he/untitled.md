@@ -1,4 +1,4 @@
-# microsoft/ai-edu
+# 集成学习 Ensemble Learning
 
 ## 集成学习的概念
 

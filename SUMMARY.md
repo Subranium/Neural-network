@@ -27,7 +27,7 @@
   * [早停法 Early Stopping](ji-chu-zhi-shi/guo-ni-he/zao-ting-fa-early-stopping.md)
   * [丢弃法 Dropout](ji-chu-zhi-shi/guo-ni-he/diu-qi-fa-dropout.md)
   * [数据增强 Data Augmentation](ji-chu-zhi-shi/guo-ni-he/shu-ju-zeng-qiang-data-augmentation.md)
-  * [microsoft/ai-edu](ji-chu-zhi-shi/guo-ni-he/untitled.md)
+  * [集成学习 Ensemble Learning](ji-chu-zhi-shi/guo-ni-he/untitled.md)
 * [网络优化](ji-chu-zhi-shi/wang-luo-you-hua/README.md)
   * [权重矩阵初始化](ji-chu-zhi-shi/wang-luo-you-hua/quan-zhong-ju-zhen-chu-shi-hua.md)
   * [梯度下降优化算法](ji-chu-zhi-shi/wang-luo-you-hua/ti-du-xia-jiang-you-hua-suan-fa.md)
