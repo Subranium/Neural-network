@@ -6,7 +6,7 @@
 
 图16-36是一个简单的集成学习的示意图。
 
-![&#x56FE;16-36 &#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x793A;&#x610F;&#x56FE;](../../.gitbook/assets/image%20%28393%29.png)
+![&#x56FE;16-36 &#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x793A;&#x610F;&#x56FE;](../../../.gitbook/assets/image%20%28393%29.png)
 
 图中有两个组件：
 
@@ -31,7 +31,7 @@
 
 图16-37是Bagging集成学习的示意图。
 
-![&#x56FE;16-37 Bagging&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x793A;&#x610F;&#x56FE;](../../.gitbook/assets/image%20%28331%29.png)
+![&#x56FE;16-37 Bagging&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x793A;&#x610F;&#x56FE;](../../../.gitbook/assets/image%20%28331%29.png)
 
 1. 首先是数据集的使用，采用自助采样法（Bootstrap Sampling）。假设原始数据集Training Set中有1000个样本，我们从中随机取一个样本的拷贝放到Training Set-1中，此样本不会从原始数据集中被删除，原始数据集中还有1000个样本，而不是999个，这样下次再随机取样本时，此样本还有可能被再次选到。如此重复m次（此例m=1000），我们可以生成Training Set-1。一共重复N次（此例N=9），可以得到N个数据集。
 2. 然后搭建一个神经网络模型，可以参数相同。在N个数据集上，训练出N个模型来。
@@ -194,12 +194,6 @@ $$
 [ch16, Level7](https://github.com/microsoft/ai-edu/blob/master/A-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/SourceCode/ch16-DnnRegularization/Level7_BaggingLearner.py)
 
 首先运行Level6\_BootstrappingGenerator.py以获得子数据集，然后运行Level6\_BaggingLearner.py来实现集成学习。
-
-## keras实现
-
-```python
-
-```
 
 
 
