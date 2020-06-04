@@ -20,7 +20,22 @@
 * [交叉熵损失函数](ji-chu-zhi-shi/jiao-cha-shang-sun-shi-han-shu.md)
 * [回归常用评价指标](ji-chu-zhi-shi/hui-gui-chang-yong-ping-jia-zhi-biao.md)
 * [分类常用评价指标](ji-chu-zhi-shi/fen-lei-chang-yong-ping-jia-zhi-biao.md)
-* [学习率与批大小](ji-chu-zhi-shi/xue-xi-lv-yu-pi-da-xiao.md)
+* [偏差与方差](ji-chu-zhi-shi/pian-cha-yu-fang-cha.md)
+* [过拟合](ji-chu-zhi-shi/guo-ni-he/README.md)
+  * [L2正则](ji-chu-zhi-shi/guo-ni-he/l2-zheng-ze.md)
+  * [L1正则](ji-chu-zhi-shi/guo-ni-he/l1-zheng-ze.md)
+  * [早停法 Early Stopping](ji-chu-zhi-shi/guo-ni-he/zao-ting-fa-early-stopping.md)
+  * [丢弃法 Dropout](ji-chu-zhi-shi/guo-ni-he/diu-qi-fa-dropout.md)
+  * [数据增强 Data Augmentation](ji-chu-zhi-shi/guo-ni-he/shu-ju-zeng-qiang-data-augmentation.md)
+  * [microsoft/ai-edu](ji-chu-zhi-shi/guo-ni-he/untitled.md)
+* [网络优化](ji-chu-zhi-shi/wang-luo-you-hua/README.md)
+  * [权重矩阵初始化](ji-chu-zhi-shi/wang-luo-you-hua/quan-zhong-ju-zhen-chu-shi-hua.md)
+  * [梯度下降优化算法](ji-chu-zhi-shi/wang-luo-you-hua/ti-du-xia-jiang-you-hua-suan-fa.md)
+  * [学习率与批大小](ji-chu-zhi-shi/wang-luo-you-hua/xue-xi-lv-yu-pi-da-xiao.md)
+  * [自适应学习率算法](ji-chu-zhi-shi/wang-luo-you-hua/zi-kuo-ying-xue-xi-lv-suan-fa.md)
+  * [算法在等高线图上的效果比较](ji-chu-zhi-shi/wang-luo-you-hua/suan-fa-zai-deng-gao-xian-tu-shang-de-xiao-guo-bi-jiao.md)
+  * [批量归一化的原理](ji-chu-zhi-shi/wang-luo-you-hua/pi-liang-gui-yi-hua-de-yuan-li.md)
+  * [批量归一化的实现](ji-chu-zhi-shi/wang-luo-you-hua/pi-liang-gui-yi-hua-de-shi-xian.md)
 
 ## 线性回归
 
