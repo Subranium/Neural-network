@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
 ### 模型结构
 
-![](../../../.gitbook/assets/image%20%28419%29.png)
+![](../../../.gitbook/assets/image%20%28423%29.png)
 
 ### 模型输出
 
@@ -99,7 +99,7 @@ test loss: 0.20772670450664701
 
 ### 模型损失曲线
 
-![](../../../.gitbook/assets/image%20%28416%29.png)
+![](../../../.gitbook/assets/image%20%28417%29.png)
 
 ## keras集成学习-平均法
 
@@ -186,7 +186,7 @@ test loss: 0.14132633038929532
 
 ### 模型损失曲线
 
-![](../../../.gitbook/assets/image%20%28420%29.png)
+![](../../../.gitbook/assets/image%20%28424%29.png)
 
 ## keras集成学习-学习法
 
@@ -263,7 +263,7 @@ if __name__ == '__main__':
 
 ### 模型结构
 
-![](../../../.gitbook/assets/image%20%28417%29.png)
+![](../../../.gitbook/assets/image%20%28418%29.png)
 
 ### 模型输出
 
@@ -273,5 +273,5 @@ test loss: 0.16616634471075875
 
 ### 模型损失曲线
 
-![](../../../.gitbook/assets/image%20%28418%29.png)
+![](../../../.gitbook/assets/image%20%28421%29.png)
 
