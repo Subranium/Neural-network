@@ -201,5 +201,5 @@ test loss: 0.14912846596296658, test accuracy: 0.9682000279426575
 
 ### 模型损失以及准确率曲线
 
-![](../../../.gitbook/assets/image%20%28422%29.png)
+![](../../../.gitbook/assets/image%20%28423%29.png)
 

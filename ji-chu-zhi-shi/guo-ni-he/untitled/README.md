@@ -167,6 +167,43 @@ $$
 
 接下来我们可以建立一个两层的神经网络，输入层为9，用于接收9个神经网络的预测输出，隐层神经元数量不要大于16，输出层为10分类，标签值为上述表格中的最后一列。
 
+### scikit\_learn中的ensemble
+
+![](../../../.gitbook/assets/image%20%28421%29.png)
+
+在keras中可以将模型转换为sklearn的回归或分类模型，传入sklearn的函数中。
+
+```python
+from keras.wrappers.scikit_learn import KerasRegressor, KerasClassifier
+
+
+def build_model1():
+    model = Sequential()
+    model.add(Dense(128, activation='relu', input_shape=(13, )))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dense(1, activation='linear'))
+    model.compile(optimizer='adam',
+                  loss='mean_squared_error')
+    return model
+
+
+def build_model2():
+    model = Sequential()
+    model.add(Dense(64, activation='relu', input_shape=(784, )))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dense(10, activation='softmax'))
+    model.compile(optimizer='Adam',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+    return model
+
+model = KerasRegressor(build_fn=build_model1, epochs=100, batch_size=64)
+model._estimator_type = "regressor"
+
+model = KerasClassifier(build_fn=build_model2, epochs=2, batch_size=64)
+model._estimator_type = "classifier"
+```
+
 ## 运行结果
 
 我们使用了相对多数投票法，其测试结果为表16-7所示。
